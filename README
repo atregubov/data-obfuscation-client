@@ -1,4 +1,4 @@
-This bundle includes 1) Jerasure, 2) libfmsr and 3) NCCloud.
+This bundle includes 1) Jerasure, 2) libfmsr, 3) NCCloud and 4) obfuscator
 
 Jerasure is located under Jerasure/.  Refer to Jerasure/README.md and
 Jerasure/License.txt for its readme and license respectively.
@@ -8,3 +8,5 @@ for its readme and license respectively.
 
 NCCloud is located under nccloud/.  Refer to nccloud/README and nccloud/LICENSE
 for its readme and license respectively.
+
+obfuscator is located under obfuscator/.  Refer toobfuscator/README.txt for its readme.
