@@ -1,0 +1,125 @@
+\hypertarget{fmsrutil_8h}{\section{fmsrutil.\-h \-File \-Reference}
+\label{fmsrutil_8h}\index{fmsrutil.\-h@{fmsrutil.\-h}}
+}
+
+
+\-Contains prototypes for functions implemented in \hyperlink{fmsrutil_8c}{fmsrutil.\-c}.  
+
+
+{\ttfamily \#include \char`\"{}gf.\-h\char`\"{}}\*
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{fmsrutil_8h_a6d9faa69eb3f815035c7a7586eac0649}{fmsr\-\_\-encode\-\_\-support} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n)
+\item 
+int \hyperlink{fmsrutil_8h_ab7b8b716d49256d61b2b36205586ea03}{fmsr\-\_\-repair\-\_\-support} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} num\-\_\-erasures)
+\item 
+void \hyperlink{fmsrutil_8h_a8d5984c6d20f0ccdaee5936b1253073c}{fmsr\-\_\-create\-\_\-encode\-\_\-matrix} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$encode\-\_\-matrix)
+\item 
+void \hyperlink{fmsrutil_8h_a1a6962096da48108f7cec2f5fc84efc4}{fmsr\-\_\-pad\-\_\-data} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$data, size\-\_\-t data\-\_\-size)
+\item 
+size\-\_\-t \hyperlink{fmsrutil_8h_a70e7c296f44ee983622191d0e920a163}{fmsr\-\_\-unpad\-\_\-data} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$data, size\-\_\-t data\-\_\-size)
+\item 
+void \hyperlink{fmsrutil_8h_adeecbefec8e9236740d87a860a9c996d}{fmsr\-\_\-calculate\-\_\-lambda} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$survivor\-\_\-matrix, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$lambda, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} select)
+\item 
+int \hyperlink{fmsrutil_8h_aaa1c746a9dab2db4c903497b7117d501}{fmsr\-\_\-check\-\_\-ermds} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$gamma, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$lambda, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} select)
+\item 
+int \hyperlink{fmsrutil_8h_a53d70cb1ddab29962439d6aa82edaccf}{fmsr\-\_\-check\-\_\-mds} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$encode\-\_\-matrix)
+\item 
+int \hyperlink{fmsrutil_8h_a8c8900c54b03ffadad9f1ce9804cf1b6}{fmsr\-\_\-check\-\_\-rmds} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$encode\-\_\-matrix, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$nodes\-\_\-repaired, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} num\-\_\-nodes\-\_\-repaired)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Contains prototypes for functions implemented in \hyperlink{fmsrutil_8c}{fmsrutil.\-c}. \begin{DoxyAuthor}{\-Author}
+\-Henry \-Chen (\href{mailto:chchen@cse.cuhk.edu.hk}{\tt chchen@cse.\-cuhk.\-edu.\-hk}) 
+\end{DoxyAuthor}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{fmsrutil_8h_adeecbefec8e9236740d87a860a9c996d}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-calculate\-\_\-lambda@{fmsr\-\_\-calculate\-\_\-lambda}}
+\index{fmsr\-\_\-calculate\-\_\-lambda@{fmsr\-\_\-calculate\-\_\-lambda}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-calculate\-\_\-lambda}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf fmsr\-\_\-calculate\-\_\-lambda} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{survivor\-\_\-matrix, }
+\item[{{\bf gf} $\ast$}]{lambda, }
+\item[{{\bf gf}}]{select}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_adeecbefec8e9236740d87a860a9c996d}
+\hypertarget{fmsrutil_8h_aaa1c746a9dab2db4c903497b7117d501}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-check\-\_\-ermds@{fmsr\-\_\-check\-\_\-ermds}}
+\index{fmsr\-\_\-check\-\_\-ermds@{fmsr\-\_\-check\-\_\-ermds}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-check\-\_\-ermds}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fmsr\-\_\-check\-\_\-ermds} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{gamma, }
+\item[{{\bf gf} $\ast$}]{lambda, }
+\item[{{\bf gf}}]{select}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_aaa1c746a9dab2db4c903497b7117d501}
+\hypertarget{fmsrutil_8h_a53d70cb1ddab29962439d6aa82edaccf}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-check\-\_\-mds@{fmsr\-\_\-check\-\_\-mds}}
+\index{fmsr\-\_\-check\-\_\-mds@{fmsr\-\_\-check\-\_\-mds}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-check\-\_\-mds}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fmsr\-\_\-check\-\_\-mds} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{encode\-\_\-matrix}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_a53d70cb1ddab29962439d6aa82edaccf}
+\hypertarget{fmsrutil_8h_a8c8900c54b03ffadad9f1ce9804cf1b6}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-check\-\_\-rmds@{fmsr\-\_\-check\-\_\-rmds}}
+\index{fmsr\-\_\-check\-\_\-rmds@{fmsr\-\_\-check\-\_\-rmds}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-check\-\_\-rmds}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fmsr\-\_\-check\-\_\-rmds} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{encode\-\_\-matrix, }
+\item[{{\bf gf} $\ast$}]{nodes\-\_\-repaired, }
+\item[{{\bf gf}}]{num\-\_\-nodes\-\_\-repaired}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_a8c8900c54b03ffadad9f1ce9804cf1b6}
+\hypertarget{fmsrutil_8h_a8d5984c6d20f0ccdaee5936b1253073c}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-create\-\_\-encode\-\_\-matrix@{fmsr\-\_\-create\-\_\-encode\-\_\-matrix}}
+\index{fmsr\-\_\-create\-\_\-encode\-\_\-matrix@{fmsr\-\_\-create\-\_\-encode\-\_\-matrix}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-create\-\_\-encode\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf fmsr\-\_\-create\-\_\-encode\-\_\-matrix} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{encode\-\_\-matrix}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_a8d5984c6d20f0ccdaee5936b1253073c}
+\hypertarget{fmsrutil_8h_a6d9faa69eb3f815035c7a7586eac0649}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-encode\-\_\-support@{fmsr\-\_\-encode\-\_\-support}}
+\index{fmsr\-\_\-encode\-\_\-support@{fmsr\-\_\-encode\-\_\-support}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-encode\-\_\-support}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fmsr\-\_\-encode\-\_\-support} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_a6d9faa69eb3f815035c7a7586eac0649}
+\hypertarget{fmsrutil_8h_a1a6962096da48108f7cec2f5fc84efc4}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-pad\-\_\-data@{fmsr\-\_\-pad\-\_\-data}}
+\index{fmsr\-\_\-pad\-\_\-data@{fmsr\-\_\-pad\-\_\-data}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-pad\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf fmsr\-\_\-pad\-\_\-data} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{data, }
+\item[{size\-\_\-t}]{data\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_a1a6962096da48108f7cec2f5fc84efc4}
+\hypertarget{fmsrutil_8h_ab7b8b716d49256d61b2b36205586ea03}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-repair\-\_\-support@{fmsr\-\_\-repair\-\_\-support}}
+\index{fmsr\-\_\-repair\-\_\-support@{fmsr\-\_\-repair\-\_\-support}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-repair\-\_\-support}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fmsr\-\_\-repair\-\_\-support} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf}}]{num\-\_\-erasures}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_ab7b8b716d49256d61b2b36205586ea03}
+\hypertarget{fmsrutil_8h_a70e7c296f44ee983622191d0e920a163}{\index{fmsrutil.\-h@{fmsrutil.\-h}!fmsr\-\_\-unpad\-\_\-data@{fmsr\-\_\-unpad\-\_\-data}}
+\index{fmsr\-\_\-unpad\-\_\-data@{fmsr\-\_\-unpad\-\_\-data}!fmsrutil.h@{fmsrutil.\-h}}
+\subsubsection[{fmsr\-\_\-unpad\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t {\bf fmsr\-\_\-unpad\-\_\-data} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{data, }
+\item[{size\-\_\-t}]{data\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{fmsrutil_8h_a70e7c296f44ee983622191d0e920a163}

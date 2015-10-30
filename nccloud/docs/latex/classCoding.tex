@@ -1,0 +1,381 @@
+\hypertarget{classCoding}{\section{\-Coding \-Class \-Reference}
+\label{classCoding}\index{\-Coding@{\-Coding}}
+}
+
+
+\-Abstract base class for coding modules.  
+
+
+
+
+{\ttfamily \#include $<$coding.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \hyperlink{classCoding_a9c5c4bbea0b2395149642b7072f3f01a}{encode\-\_\-file} (std\-::string \&dstdir, std\-::string \&srcdir, std\-::string \&filename)=0
+\begin{DoxyCompactList}\small\item\em \-Encode a file at srcdir/filename into chunks stored under dstdir. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classCoding_a2902e072d7ca62fe773b29d02c876c06}{decode\-\_\-file} (std\-::string \&dst, std\-::string \&srcdir, std\-::string \&filename, std\-::vector$<$ int $>$ \&chunk\-\_\-indices)=0
+\begin{DoxyCompactList}\small\item\em \-Reconstruct a file from chunks under srcdir into dst. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classCoding_af1a9989e11d96009d197e19bdc9ed8bb}{repair\-\_\-file\-\_\-preprocess} (std\-::string \&srcdir, std\-::string \&filename, std\-::vector$<$ int $>$ \&erasures, std\-::vector$<$ int $>$ \&chunks\-\_\-to\-\_\-retrieve)=0
+\begin{DoxyCompactList}\small\item\em \-Setup repair and inform the user which chunks to retrieve for use in repair. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classCoding_acb12e296a3d21fb073a88e23436724f4}{repair\-\_\-file} (std\-::string \&dstdir, std\-::string \&srcdir, std\-::string \&filename)=0
+\begin{DoxyCompactList}\small\item\em \-Generate new chunks to replace failed chunks. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classCoding_a0c8cf500735e3611fc823f08a0281a03}{getn} (void)=0
+\begin{DoxyCompactList}\small\item\em \-Return the total number of nodes. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classCoding_acf10fe78c27541ebb60a1a6e86b2e1c4}{getk} (void)=0
+\begin{DoxyCompactList}\small\item\em \-Return the number of nodes required to reconstruct data. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classCoding_a3d77a2680d87464ab0a723bbb27640c3}{nodeid} (int index)=0
+\begin{DoxyCompactList}\small\item\em \-Return \-I\-D of the node where a specified chunk resides. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classCoding_a36c0f012731d7cafb3e106cae210e266}{chunks\-\_\-per\-\_\-node} (void)=0
+\begin{DoxyCompactList}\small\item\em \-Return the number of chunks per node. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classCoding_af5e4733ef43bdcc29413fba823aa9cd8}{chunks\-\_\-on\-\_\-node} (int node, std\-::vector$<$ int $>$ \&chunk\-\_\-indices)=0
+\begin{DoxyCompactList}\small\item\em \-Return the indices of all chunks on a specified node. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classCoding_ac305bb1decbd134ce41ff3d4554740fc}{reset} (void)=0
+\begin{DoxyCompactList}\small\item\em \-Clear all cached parameters other than n, k and w. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classCoding}{\-Coding} $\ast$ \hyperlink{classCoding_a65e4c5811dc3893914e702218607d92e}{use\-\_\-coding} (int type, int k, int n, int w)
+\begin{DoxyCompactList}\small\item\em \-Return an instance of a coding scheme, based on user's choice. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Protected \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classCoding_a8648d12606143d64c1f498a570f2d2b8}{read\-\_\-metadata} (std\-::string \&path, size\-\_\-t \&chunksize)
+\begin{DoxyCompactList}\small\item\em \-Read metadata from disk. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classCoding_a7b2f6c2f1c1051647a5d1269c9d19f3b}{write\-\_\-metadata} (std\-::string \&path, size\-\_\-t chunksize)
+\begin{DoxyCompactList}\small\item\em \-Write metadata to disk. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classCoding_a73ebe52a221e8cd02054c4290b75e70c}{read\-\_\-chunks} (std\-::string \&path, size\-\_\-t chunksize, std\-::vector$<$ int $>$ \&chunk\-\_\-indices, char $\ast$chunks)
+\begin{DoxyCompactList}\small\item\em \-Read chunks from disk to a single char buffer. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classCoding_a1c95e3e821ec84d4b056cf3fd662a535}{write\-\_\-chunks} (std\-::string \&path, size\-\_\-t chunksize, std\-::vector$<$ int $>$ \&chunk\-\_\-indices, char $\ast$chunks)
+\begin{DoxyCompactList}\small\item\em \-Write chunks to disk from a single char buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Abstract base class for coding modules. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classCoding_af5e4733ef43bdcc29413fba823aa9cd8}{\index{\-Coding@{\-Coding}!chunks\-\_\-on\-\_\-node@{chunks\-\_\-on\-\_\-node}}
+\index{chunks\-\_\-on\-\_\-node@{chunks\-\_\-on\-\_\-node}!Coding@{\-Coding}}
+\subsubsection[{chunks\-\_\-on\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::chunks\-\_\-on\-\_\-node} (
+\begin{DoxyParamCaption}
+\item[{int}]{node, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_af5e4733ef43bdcc29413fba823aa9cd8}
+
+
+\-Return the indices of all chunks on a specified node. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em node} & node number \\
+\hline
+\mbox{\tt out}  & {\em chunk\-\_\-indices} & vector of chunk indices on node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_a36c0f012731d7cafb3e106cae210e266}{\index{\-Coding@{\-Coding}!chunks\-\_\-per\-\_\-node@{chunks\-\_\-per\-\_\-node}}
+\index{chunks\-\_\-per\-\_\-node@{chunks\-\_\-per\-\_\-node}!Coding@{\-Coding}}
+\subsubsection[{chunks\-\_\-per\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::chunks\-\_\-per\-\_\-node} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_a36c0f012731d7cafb3e106cae210e266}
+
+
+\-Return the number of chunks per node. 
+
+\begin{DoxyReturn}{\-Returns}
+the number of chunks per node on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_a2902e072d7ca62fe773b29d02c876c06}{\index{\-Coding@{\-Coding}!decode\-\_\-file@{decode\-\_\-file}}
+\index{decode\-\_\-file@{decode\-\_\-file}!Coding@{\-Coding}}
+\subsubsection[{decode\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::decode\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{dst, }
+\item[{std\-::string \&}]{srcdir, }
+\item[{std\-::string \&}]{filename, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_a2902e072d7ca62fe773b29d02c876c06}
+
+
+\-Reconstruct a file from chunks under srcdir into dst. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em dst} & pathname of reconstructed file \\
+\hline
+\mbox{\tt in}  & {\em srcdir} & directory where retrieved chunks used for decoding are stored \\
+\hline
+\mbox{\tt in}  & {\em filename} & filename of file to reconstruct \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-indices} & \-Indices of chunks retrieved for use in decoding \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_a9c5c4bbea0b2395149642b7072f3f01a}{\index{\-Coding@{\-Coding}!encode\-\_\-file@{encode\-\_\-file}}
+\index{encode\-\_\-file@{encode\-\_\-file}!Coding@{\-Coding}}
+\subsubsection[{encode\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::encode\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{dstdir, }
+\item[{std\-::string \&}]{srcdir, }
+\item[{std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_a9c5c4bbea0b2395149642b7072f3f01a}
+
+
+\-Encode a file at srcdir/filename into chunks stored under dstdir. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em dstdir} & destination directory where encoded chunks are stored \\
+\hline
+\mbox{\tt in}  & {\em srcdir} & source directory of source file to be encoded \\
+\hline
+\mbox{\tt in}  & {\em filename} & filename of source file to be encoded \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_acf10fe78c27541ebb60a1a6e86b2e1c4}{\index{\-Coding@{\-Coding}!getk@{getk}}
+\index{getk@{getk}!Coding@{\-Coding}}
+\subsubsection[{getk}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::getk} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_acf10fe78c27541ebb60a1a6e86b2e1c4}
+
+
+\-Return the number of nodes required to reconstruct data. 
+
+\begin{DoxyReturn}{\-Returns}
+the total number of nodes on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_a0c8cf500735e3611fc823f08a0281a03}{\index{\-Coding@{\-Coding}!getn@{getn}}
+\index{getn@{getn}!Coding@{\-Coding}}
+\subsubsection[{getn}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::getn} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_a0c8cf500735e3611fc823f08a0281a03}
+
+
+\-Return the total number of nodes. 
+
+\begin{DoxyReturn}{\-Returns}
+the total number of nodes on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_a3d77a2680d87464ab0a723bbb27640c3}{\index{\-Coding@{\-Coding}!nodeid@{nodeid}}
+\index{nodeid@{nodeid}!Coding@{\-Coding}}
+\subsubsection[{nodeid}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::nodeid} (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_a3d77a2680d87464ab0a723bbb27640c3}
+
+
+\-Return \-I\-D of the node where a specified chunk resides. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em index} & chunk index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+the corresponding node id on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_a73ebe52a221e8cd02054c4290b75e70c}{\index{\-Coding@{\-Coding}!read\-\_\-chunks@{read\-\_\-chunks}}
+\index{read\-\_\-chunks@{read\-\_\-chunks}!Coding@{\-Coding}}
+\subsubsection[{read\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Coding\-::read\-\_\-chunks} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{path, }
+\item[{size\-\_\-t}]{chunksize, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices, }
+\item[{char $\ast$}]{chunks}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}\label{classCoding_a73ebe52a221e8cd02054c4290b75e70c}
+
+
+\-Read chunks from disk to a single char buffer. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em path} & path to chunks without the \char`\"{}.\-chunk\-\_\-\char`\"{} suffix \\
+\hline
+\mbox{\tt in}  & {\em chunksize} & size of a chunk \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-indices} & list of chunk indices to read \\
+\hline
+\mbox{\tt out}  & {\em chunks} & single char buffer holding chunks, following order in chunk\-\_\-indices \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCoding_a8648d12606143d64c1f498a570f2d2b8}{\index{\-Coding@{\-Coding}!read\-\_\-metadata@{read\-\_\-metadata}}
+\index{read\-\_\-metadata@{read\-\_\-metadata}!Coding@{\-Coding}}
+\subsubsection[{read\-\_\-metadata}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Coding\-::read\-\_\-metadata} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{path, }
+\item[{size\-\_\-t \&}]{chunksize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}\label{classCoding_a8648d12606143d64c1f498a570f2d2b8}
+
+
+\-Read metadata from disk. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em path} & path to metadata without the \char`\"{}.\-meta\char`\"{} suffix \\
+\hline
+\mbox{\tt out}  & {\em chunksize} & chunk size read from the metadata \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCoding_acb12e296a3d21fb073a88e23436724f4}{\index{\-Coding@{\-Coding}!repair\-\_\-file@{repair\-\_\-file}}
+\index{repair\-\_\-file@{repair\-\_\-file}!Coding@{\-Coding}}
+\subsubsection[{repair\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::repair\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{dstdir, }
+\item[{std\-::string \&}]{srcdir, }
+\item[{std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_acb12e296a3d21fb073a88e23436724f4}
+
+
+\-Generate new chunks to replace failed chunks. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em dstdir} & destination directory to store the new chunks \\
+\hline
+\mbox{\tt in}  & {\em srcdir} & directory where retrieved chunks are at \\
+\hline
+\mbox{\tt in}  & {\em filename} & filename of file to repair \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_af1a9989e11d96009d197e19bdc9ed8bb}{\index{\-Coding@{\-Coding}!repair\-\_\-file\-\_\-preprocess@{repair\-\_\-file\-\_\-preprocess}}
+\index{repair\-\_\-file\-\_\-preprocess@{repair\-\_\-file\-\_\-preprocess}!Coding@{\-Coding}}
+\subsubsection[{repair\-\_\-file\-\_\-preprocess}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Coding\-::repair\-\_\-file\-\_\-preprocess} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{srcdir, }
+\item[{std\-::string \&}]{filename, }
+\item[{std\-::vector$<$ int $>$ \&}]{erasures, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunks\-\_\-to\-\_\-retrieve}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_af1a9989e11d96009d197e19bdc9ed8bb}
+
+
+\-Setup repair and inform the user which chunks to retrieve for use in repair. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em srcdir} & directory where retrieved metadata is at \\
+\hline
+\mbox{\tt in}  & {\em filename} & filename of file to repair \\
+\hline
+\mbox{\tt in}  & {\em erasures} & list of failed nodes \\
+\hline
+\mbox{\tt out}  & {\em chunks\-\_\-to\-\_\-retrieve} & \-Indices of chunks to be retrieved for use in repair \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{classCoding_ac305bb1decbd134ce41ff3d4554740fc}{\index{\-Coding@{\-Coding}!reset@{reset}}
+\index{reset@{reset}!Coding@{\-Coding}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}virtual void {\bf \-Coding\-::reset} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classCoding_ac305bb1decbd134ce41ff3d4554740fc}
+
+
+\-Clear all cached parameters other than n, k and w. 
+
+\hypertarget{classCoding_a65e4c5811dc3893914e702218607d92e}{\index{\-Coding@{\-Coding}!use\-\_\-coding@{use\-\_\-coding}}
+\index{use\-\_\-coding@{use\-\_\-coding}!Coding@{\-Coding}}
+\subsubsection[{use\-\_\-coding}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Coding} $\ast$ {\bf \-Coding\-::use\-\_\-coding} (
+\begin{DoxyParamCaption}
+\item[{int}]{type, }
+\item[{int}]{k, }
+\item[{int}]{n, }
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classCoding_a65e4c5811dc3893914e702218607d92e}
+
+
+\-Return an instance of a coding scheme, based on user's choice. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em type} & choice of coding scheme (0, 1 or 2) \\
+\hline
+\mbox{\tt in}  & {\em k} & number of nodes required to reconstruct data \\
+\hline
+\mbox{\tt in}  & {\em n} & total number of nodes \\
+\hline
+\mbox{\tt in}  & {\em w} & field width, w=8 if we use \-G\-F(2$^\wedge$8) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+an instance of an appropriate subclass of \hyperlink{classCoding}{\-Coding} 
+\end{DoxyReturn}
+\hypertarget{classCoding_a1c95e3e821ec84d4b056cf3fd662a535}{\index{\-Coding@{\-Coding}!write\-\_\-chunks@{write\-\_\-chunks}}
+\index{write\-\_\-chunks@{write\-\_\-chunks}!Coding@{\-Coding}}
+\subsubsection[{write\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Coding\-::write\-\_\-chunks} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{path, }
+\item[{size\-\_\-t}]{chunksize, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices, }
+\item[{char $\ast$}]{chunks}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}\label{classCoding_a1c95e3e821ec84d4b056cf3fd662a535}
+
+
+\-Write chunks to disk from a single char buffer. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em path} & path to chunks without the \char`\"{}.\-chunk\-\_\-\char`\"{} suffix \\
+\hline
+\mbox{\tt in}  & {\em chunksize} & size of a chunk \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-indices} & list of chunk indices to read \\
+\hline
+\mbox{\tt in}  & {\em chunks} & single char buffer holding chunks, following order in chunk\-\_\-indices \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCoding_a7b2f6c2f1c1051647a5d1269c9d19f3b}{\index{\-Coding@{\-Coding}!write\-\_\-metadata@{write\-\_\-metadata}}
+\index{write\-\_\-metadata@{write\-\_\-metadata}!Coding@{\-Coding}}
+\subsubsection[{write\-\_\-metadata}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Coding\-::write\-\_\-metadata} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{path, }
+\item[{size\-\_\-t}]{chunksize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}\label{classCoding_a7b2f6c2f1c1051647a5d1269c9d19f3b}
+
+
+\-Write metadata to disk. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em path} & path to metadata without the \char`\"{}.\-meta\char`\"{} suffix \\
+\hline
+\mbox{\tt in}  & {\em chunksize} & chunk size to write to the metadata \\
+\hline
+\end{DoxyParams}
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{coding_8h}{coding.\-h}\item 
+\hyperlink{coding_8cc}{coding.\-cc}\end{DoxyCompactItemize}

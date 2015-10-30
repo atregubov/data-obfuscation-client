@@ -1,0 +1,130 @@
+\hypertarget{common_8h}{\section{common.\-h \-File \-Reference}
+\label{common_8h}\index{common.\-h@{common.\-h}}
+}
+
+
+\-Implements various convenience functions (e.\-g., error reporting)  
+
+
+{\ttfamily \#include $<$cstdio$>$}\*
+{\ttfamily \#include $<$cstdlib$>$}\*
+{\ttfamily \#include $<$errno.\-h$>$}\*
+{\ttfamily \#include $<$iostream$>$}\*
+{\ttfamily \#include $<$sstream$>$}\*
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{common_8h_ad5c40327c99b5b5008446ebde83d3082}{show\-\_\-error}(call)
+\begin{DoxyCompactList}\small\item\em \-Print error details with perror() and exit. \end{DoxyCompactList}\item 
+\#define \hyperlink{common_8h_a007992418568488efb6a3150ebccefa8}{show\-\_\-file\-\_\-error}(call, filename, fp)
+\begin{DoxyCompactList}\small\item\em \-Print error details with perror(), close specified file (if any) and exit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{common_8h_a02d5129f10005611f1be4ff41270d3e0}{print} (std\-::ostream \&s)
+\begin{DoxyCompactList}\small\item\em cout for use in multi-\/threaded environments \end{DoxyCompactList}\item 
+void \hyperlink{common_8h_a88562dfc68a284bcb6c012167438a86b}{print\-\_\-error} (std\-::ostream \&s)
+\begin{DoxyCompactList}\small\item\em cerr for use in multi-\/threaded environments \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{common_8h_a0c25855f406907a561546c1bb4fd2ddc}{reset\-\_\-array} (\-T $\ast$$\ast$array, unsigned int size=0)
+\begin{DoxyCompactList}\small\item\em deallocate an array and reallocate if needed \end{DoxyCompactList}\item 
+void \hyperlink{common_8h_aa528d5472059c398994e96f14521c70f}{write\-\_\-file} (std\-::string dst, char $\ast$data, size\-\_\-t size)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Implements various convenience functions (e.\-g., error reporting) \begin{DoxyAuthor}{\-Author}
+\-Henry \-Chen (\href{mailto:chchen@cse.cuhk.edu.hk}{\tt chchen@cse.\-cuhk.\-edu.\-hk}) 
+\end{DoxyAuthor}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{common_8h_ad5c40327c99b5b5008446ebde83d3082}{\index{common.\-h@{common.\-h}!show\-\_\-error@{show\-\_\-error}}
+\index{show\-\_\-error@{show\-\_\-error}!common.h@{common.\-h}}
+\subsubsection[{show\-\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf show\-\_\-error}(
+\begin{DoxyParamCaption}
+\item[{}]{call}
+\end{DoxyParamCaption}
+)}}\label{common_8h_ad5c40327c99b5b5008446ebde83d3082}
+{\bfseries \-Value\-:}
+\begin{DoxyCode}
+do { \
+    fprintf(stderr, "%c[1;31;40m", 0x1B); \
+    fprintf(stderr, "%s(%d) in %s:: ", __FILE__, __LINE__, __func__); \
+    perror(call); \
+    fprintf(stderr, "%c[0m", 0x1B); \
+    exit(-1); } while (0)
+\end{DoxyCode}
+
+
+\-Print error details with perror() and exit. 
+
+\hypertarget{common_8h_a007992418568488efb6a3150ebccefa8}{\index{common.\-h@{common.\-h}!show\-\_\-file\-\_\-error@{show\-\_\-file\-\_\-error}}
+\index{show\-\_\-file\-\_\-error@{show\-\_\-file\-\_\-error}!common.h@{common.\-h}}
+\subsubsection[{show\-\_\-file\-\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf show\-\_\-file\-\_\-error}(
+\begin{DoxyParamCaption}
+\item[{}]{call, }
+\item[{}]{filename, }
+\item[{}]{fp}
+\end{DoxyParamCaption}
+)}}\label{common_8h_a007992418568488efb6a3150ebccefa8}
+{\bfseries \-Value\-:}
+\begin{DoxyCode}
+do { \
+    fprintf(stderr, "%c[1;31;40m", 0x1B); \
+    fprintf(stderr, "%s(%d) in %s:: ", __FILE__, __LINE__, __func__); \
+    perror(call); \
+    fprintf(stderr, "\twhen working with file: %s\n", filename); \
+    fprintf(stderr, "%c[0m", 0x1B); \
+    if (fp) { fclose(fp); } \
+    exit(-1); } while (0)
+\end{DoxyCode}
+
+
+\-Print error details with perror(), close specified file (if any) and exit. 
+
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{common_8h_a02d5129f10005611f1be4ff41270d3e0}{\index{common.\-h@{common.\-h}!print@{print}}
+\index{print@{print}!common.h@{common.\-h}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print} (
+\begin{DoxyParamCaption}
+\item[{std\-::ostream \&}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{common_8h_a02d5129f10005611f1be4ff41270d3e0}
+
+
+cout for use in multi-\/threaded environments 
+
+\hypertarget{common_8h_a88562dfc68a284bcb6c012167438a86b}{\index{common.\-h@{common.\-h}!print\-\_\-error@{print\-\_\-error}}
+\index{print\-\_\-error@{print\-\_\-error}!common.h@{common.\-h}}
+\subsubsection[{print\-\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf print\-\_\-error} (
+\begin{DoxyParamCaption}
+\item[{std\-::ostream \&}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{common_8h_a88562dfc68a284bcb6c012167438a86b}
+
+
+cerr for use in multi-\/threaded environments 
+
+\hypertarget{common_8h_a0c25855f406907a561546c1bb4fd2ddc}{\index{common.\-h@{common.\-h}!reset\-\_\-array@{reset\-\_\-array}}
+\index{reset\-\_\-array@{reset\-\_\-array}!common.h@{common.\-h}}
+\subsubsection[{reset\-\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ void {\bf reset\-\_\-array} (
+\begin{DoxyParamCaption}
+\item[{\-T $\ast$$\ast$}]{array, }
+\item[{unsigned int}]{size = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{common_8h_a0c25855f406907a561546c1bb4fd2ddc}
+
+
+deallocate an array and reallocate if needed 
+
+\hypertarget{common_8h_aa528d5472059c398994e96f14521c70f}{\index{common.\-h@{common.\-h}!write\-\_\-file@{write\-\_\-file}}
+\index{write\-\_\-file@{write\-\_\-file}!common.h@{common.\-h}}
+\subsubsection[{write\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf write\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{dst, }
+\item[{char $\ast$}]{data, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{common_8h_aa528d5472059c398994e96f14521c70f}

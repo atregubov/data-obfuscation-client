@@ -1,0 +1,140 @@
+\hypertarget{gf_8c}{\section{gf.\-c \-File \-Reference}
+\label{gf_8c}\index{gf.\-c@{gf.\-c}}
+}
+
+
+\-Implements \-G\-F(256) arithmetics.  
+
+
+{\ttfamily \#include $<$stdint.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include $<$string.\-h$>$}\*
+{\ttfamily \#include \char`\"{}gf.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}misc.\-h\char`\"{}}\*
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gf_8c_ae6d4433975cd36dadafd1f1cacb81de4}{gf\-\_\-uint64\-\_\-mul}(ptr\-\_\-multiplier, ptr\-\_\-multiplicand)
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gf_8c_aa86b857f221ecec0c039a726421a0359}{gf\-\_\-init} ()
+\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{gf_8c_a67431ecb43b19bc2d42e9df3e90263b2}{gf\-\_\-mul} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} a, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} b)
+\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{gf_8c_a493085c48099f2b14cc37db0fd8aa451}{gf\-\_\-div} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} a, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} b)
+\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{gf_8c_a451167081cd8b14ddefb6bd5c93b74d2}{gf\-\_\-inv} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} a)
+\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{gf_8c_a2a6baaf9220f40a950f196b4186b1056}{gf\-\_\-log} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} a)
+\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{gf_8c_a78a61b08b9c6b6ff2e2c22f7265a9551}{gf\-\_\-x} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} a)
+\item 
+void \hyperlink{gf_8c_af7b24e396310004362fd48a86ed95913}{gf\-\_\-mul\-\_\-bytes} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$a, size\-\_\-t len, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} b, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$c)
+\begin{DoxyCompactList}\small\item\em \-Multiplies all (len) bytes in a\mbox{[}\mbox{]} by b, store results in c\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{gf_8c_a3ea69596d793b6fc0ca3444f08c57007}{gf\-\_\-mulxor\-\_\-bytes} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$a, size\-\_\-t len, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} b, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$c)
+\begin{DoxyCompactList}\small\item\em \-Multiplies all (len) bytes in a\mbox{[}\mbox{]} by b, bitwise xor results to c\mbox{[}\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Implements \-G\-F(256) arithmetics. \begin{DoxyAuthor}{\-Author}
+\-Henry \-Chen (\href{mailto:chchen@cse.cuhk.edu.hk}{\tt chchen@cse.\-cuhk.\-edu.\-hk}) 
+\end{DoxyAuthor}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{gf_8c_ae6d4433975cd36dadafd1f1cacb81de4}{\index{gf.\-c@{gf.\-c}!gf\-\_\-uint64\-\_\-mul@{gf\-\_\-uint64\-\_\-mul}}
+\index{gf\-\_\-uint64\-\_\-mul@{gf\-\_\-uint64\-\_\-mul}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-uint64\-\_\-mul}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf gf\-\_\-uint64\-\_\-mul}(
+\begin{DoxyParamCaption}
+\item[{}]{ptr\-\_\-multiplier, }
+\item[{}]{ptr\-\_\-multiplicand}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_ae6d4433975cd36dadafd1f1cacb81de4}
+{\bfseries \-Value\-:}
+\begin{DoxyCode}
+((uint64_t)ptr_multiplier[ptr_multiplicand[0]])      | \
+    (((uint64_t)ptr_multiplier[ptr_multiplicand[1]])<<8)  | \
+    (((uint64_t)ptr_multiplier[ptr_multiplicand[2]])<<16) | \
+    (((uint64_t)ptr_multiplier[ptr_multiplicand[3]])<<24) | \
+    (((uint64_t)ptr_multiplier[ptr_multiplicand[4]])<<32) | \
+    (((uint64_t)ptr_multiplier[ptr_multiplicand[5]])<<40) | \
+    (((uint64_t)ptr_multiplier[ptr_multiplicand[6]])<<48) | \
+    (((uint64_t)ptr_multiplier[ptr_multiplicand[7]])<<56)
+\end{DoxyCode}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{gf_8c_a493085c48099f2b14cc37db0fd8aa451}{\index{gf.\-c@{gf.\-c}!gf\-\_\-div@{gf\-\_\-div}}
+\index{gf\-\_\-div@{gf\-\_\-div}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-div}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf gf\-\_\-div} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{a, }
+\item[{{\bf gf}}]{b}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_a493085c48099f2b14cc37db0fd8aa451}
+\hypertarget{gf_8c_aa86b857f221ecec0c039a726421a0359}{\index{gf.\-c@{gf.\-c}!gf\-\_\-init@{gf\-\_\-init}}
+\index{gf\-\_\-init@{gf\-\_\-init}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf gf\-\_\-init} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_aa86b857f221ecec0c039a726421a0359}
+\hypertarget{gf_8c_a451167081cd8b14ddefb6bd5c93b74d2}{\index{gf.\-c@{gf.\-c}!gf\-\_\-inv@{gf\-\_\-inv}}
+\index{gf\-\_\-inv@{gf\-\_\-inv}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-inv}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf gf\-\_\-inv} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{a}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_a451167081cd8b14ddefb6bd5c93b74d2}
+\hypertarget{gf_8c_a2a6baaf9220f40a950f196b4186b1056}{\index{gf.\-c@{gf.\-c}!gf\-\_\-log@{gf\-\_\-log}}
+\index{gf\-\_\-log@{gf\-\_\-log}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-log}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf gf\-\_\-log} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{a}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_a2a6baaf9220f40a950f196b4186b1056}
+\hypertarget{gf_8c_a67431ecb43b19bc2d42e9df3e90263b2}{\index{gf.\-c@{gf.\-c}!gf\-\_\-mul@{gf\-\_\-mul}}
+\index{gf\-\_\-mul@{gf\-\_\-mul}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-mul}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf gf\-\_\-mul} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{a, }
+\item[{{\bf gf}}]{b}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_a67431ecb43b19bc2d42e9df3e90263b2}
+\hypertarget{gf_8c_af7b24e396310004362fd48a86ed95913}{\index{gf.\-c@{gf.\-c}!gf\-\_\-mul\-\_\-bytes@{gf\-\_\-mul\-\_\-bytes}}
+\index{gf\-\_\-mul\-\_\-bytes@{gf\-\_\-mul\-\_\-bytes}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-mul\-\_\-bytes}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf gf\-\_\-mul\-\_\-bytes} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{a, }
+\item[{size\-\_\-t}]{len, }
+\item[{{\bf gf}}]{b, }
+\item[{{\bf gf} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_af7b24e396310004362fd48a86ed95913}
+
+
+\-Multiplies all (len) bytes in a\mbox{[}\mbox{]} by b, store results in c\mbox{[}\mbox{]}. 
+
+a\mbox{[}\mbox{]} and c\mbox{[}\mbox{]} can be the same location. \hypertarget{gf_8c_a3ea69596d793b6fc0ca3444f08c57007}{\index{gf.\-c@{gf.\-c}!gf\-\_\-mulxor\-\_\-bytes@{gf\-\_\-mulxor\-\_\-bytes}}
+\index{gf\-\_\-mulxor\-\_\-bytes@{gf\-\_\-mulxor\-\_\-bytes}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-mulxor\-\_\-bytes}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf gf\-\_\-mulxor\-\_\-bytes} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{a, }
+\item[{size\-\_\-t}]{len, }
+\item[{{\bf gf}}]{b, }
+\item[{{\bf gf} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_a3ea69596d793b6fc0ca3444f08c57007}
+
+
+\-Multiplies all (len) bytes in a\mbox{[}\mbox{]} by b, bitwise xor results to c\mbox{[}\mbox{]}. 
+
+a\mbox{[}\mbox{]} and c\mbox{[}\mbox{]} can be the same location. \hypertarget{gf_8c_a78a61b08b9c6b6ff2e2c22f7265a9551}{\index{gf.\-c@{gf.\-c}!gf\-\_\-x@{gf\-\_\-x}}
+\index{gf\-\_\-x@{gf\-\_\-x}!gf.c@{gf.\-c}}
+\subsubsection[{gf\-\_\-x}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf gf\-\_\-x} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{a}
+\end{DoxyParamCaption}
+)}}\label{gf_8c_a78a61b08b9c6b6ff2e2c22f7265a9551}

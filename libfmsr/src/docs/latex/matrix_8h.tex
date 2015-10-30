@@ -1,0 +1,116 @@
+\hypertarget{matrix_8h}{\section{matrix.\-h \-File \-Reference}
+\label{matrix_8h}\index{matrix.\-h@{matrix.\-h}}
+}
+
+
+\-Contains prototypes for functions implemented in \hyperlink{matrix_8c}{matrix.\-c}.  
+
+
+{\ttfamily \#include \char`\"{}gf.\-h\char`\"{}}\*
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{matrix_8h_a2451f2278d5ad63b49c86336a618c4f1}{matrix\-\_\-mul} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$\-A, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$\-B, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$\-C, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, size\-\_\-t m)
+\begin{DoxyCompactList}\small\item\em \-Matrix multiplication, \-C = \-A\-B; \-A is n x k matrix and \-B is k x m matrix. \end{DoxyCompactList}\item 
+void \hyperlink{matrix_8h_ab0a7f3af8b37e9388ec1dceaad909f12}{matrix\-\_\-mul\-\_\-p} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$\-A, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$\-B, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$\-C, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, size\-\_\-t m, int num\-\_\-threads)
+\begin{DoxyCompactList}\small\item\em \hyperlink{matrix_8c_a2451f2278d5ad63b49c86336a618c4f1}{matrix\-\_\-mul()} distributed over (num\-\_\-threads) threads \end{DoxyCompactList}\item 
+int \hyperlink{matrix_8h_a37ba26bd38d9fd1c79dd1e78582d1185}{matrix\-\_\-invert} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$\-A, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k)
+\begin{DoxyCompactList}\small\item\em \-Inverts a k x k matrix \-A. \end{DoxyCompactList}\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{matrix_8h_ae555aa9376fd6078af9538352bf48da7}{matrix\-\_\-rank} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$\-A, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} m)
+\begin{DoxyCompactList}\small\item\em \-Returns rank(\-A), where \-A is an n x m matrix. \end{DoxyCompactList}\item 
+int \hyperlink{matrix_8h_a6dd75a08020b216db70cbf0bdd2096a9}{matrix\-\_\-next\-\_\-submatrix} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$matrix, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} rows, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} cols, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$excluded, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} num\-\_\-excluded, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$comb, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$submatrix)
+\begin{DoxyCompactList}\small\item\em \-Sample the next set of rows from matrix\mbox{[}\mbox{]} in the combinations (rows choose k). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Contains prototypes for functions implemented in \hyperlink{matrix_8c}{matrix.\-c}. \begin{DoxyAuthor}{\-Author}
+\-Henry \-Chen (\href{mailto:chchen@cse.cuhk.edu.hk}{\tt chchen@cse.\-cuhk.\-edu.\-hk}) 
+\end{DoxyAuthor}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{matrix_8h_a37ba26bd38d9fd1c79dd1e78582d1185}{\index{matrix.\-h@{matrix.\-h}!matrix\-\_\-invert@{matrix\-\_\-invert}}
+\index{matrix\-\_\-invert@{matrix\-\_\-invert}!matrix.h@{matrix.\-h}}
+\subsubsection[{matrix\-\_\-invert}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf matrix\-\_\-invert} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{\-A, }
+\item[{{\bf gf}}]{k}
+\end{DoxyParamCaption}
+)}}\label{matrix_8h_a37ba26bd38d9fd1c79dd1e78582d1185}
+
+
+\-Inverts a k x k matrix \-A. 
+
+\begin{DoxyReturn}{\-Returns}
+0 on success and -\/1 if \-A is singular 
+\end{DoxyReturn}
+\hypertarget{matrix_8h_a2451f2278d5ad63b49c86336a618c4f1}{\index{matrix.\-h@{matrix.\-h}!matrix\-\_\-mul@{matrix\-\_\-mul}}
+\index{matrix\-\_\-mul@{matrix\-\_\-mul}!matrix.h@{matrix.\-h}}
+\subsubsection[{matrix\-\_\-mul}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf matrix\-\_\-mul} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{\-A, }
+\item[{{\bf gf} $\ast$}]{\-B, }
+\item[{{\bf gf} $\ast$}]{\-C, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf}}]{k, }
+\item[{size\-\_\-t}]{m}
+\end{DoxyParamCaption}
+)}}\label{matrix_8h_a2451f2278d5ad63b49c86336a618c4f1}
+
+
+\-Matrix multiplication, \-C = \-A\-B; \-A is n x k matrix and \-B is k x m matrix. 
+
+\hypertarget{matrix_8h_ab0a7f3af8b37e9388ec1dceaad909f12}{\index{matrix.\-h@{matrix.\-h}!matrix\-\_\-mul\-\_\-p@{matrix\-\_\-mul\-\_\-p}}
+\index{matrix\-\_\-mul\-\_\-p@{matrix\-\_\-mul\-\_\-p}!matrix.h@{matrix.\-h}}
+\subsubsection[{matrix\-\_\-mul\-\_\-p}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf matrix\-\_\-mul\-\_\-p} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{\-A, }
+\item[{{\bf gf} $\ast$}]{\-B, }
+\item[{{\bf gf} $\ast$}]{\-C, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf}}]{k, }
+\item[{size\-\_\-t}]{m, }
+\item[{int}]{num\-\_\-threads}
+\end{DoxyParamCaption}
+)}}\label{matrix_8h_ab0a7f3af8b37e9388ec1dceaad909f12}
+
+
+\hyperlink{matrix_8c_a2451f2278d5ad63b49c86336a618c4f1}{matrix\-\_\-mul()} distributed over (num\-\_\-threads) threads 
+
+\hypertarget{matrix_8h_a6dd75a08020b216db70cbf0bdd2096a9}{\index{matrix.\-h@{matrix.\-h}!matrix\-\_\-next\-\_\-submatrix@{matrix\-\_\-next\-\_\-submatrix}}
+\index{matrix\-\_\-next\-\_\-submatrix@{matrix\-\_\-next\-\_\-submatrix}!matrix.h@{matrix.\-h}}
+\subsubsection[{matrix\-\_\-next\-\_\-submatrix}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf matrix\-\_\-next\-\_\-submatrix} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{matrix, }
+\item[{{\bf gf}}]{rows, }
+\item[{{\bf gf}}]{cols, }
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf} $\ast$}]{excluded, }
+\item[{{\bf gf}}]{num\-\_\-excluded, }
+\item[{{\bf gf} $\ast$}]{comb, }
+\item[{{\bf gf} $\ast$}]{submatrix}
+\end{DoxyParamCaption}
+)}}\label{matrix_8h_a6dd75a08020b216db70cbf0bdd2096a9}
+
+
+\-Sample the next set of rows from matrix\mbox{[}\mbox{]} in the combinations (rows choose k). 
+
+\-We exclude rows in excluded\mbox{[}\mbox{]}, and store results in submatrix\mbox{[}\mbox{]}. \begin{DoxyReturn}{\-Returns}
+0 when all combinations are exhausted 
+\end{DoxyReturn}
+\hypertarget{matrix_8h_ae555aa9376fd6078af9538352bf48da7}{\index{matrix.\-h@{matrix.\-h}!matrix\-\_\-rank@{matrix\-\_\-rank}}
+\index{matrix\-\_\-rank@{matrix\-\_\-rank}!matrix.h@{matrix.\-h}}
+\subsubsection[{matrix\-\_\-rank}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf matrix\-\_\-rank} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{\-A, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf}}]{m}
+\end{DoxyParamCaption}
+)}}\label{matrix_8h_ae555aa9376fd6078af9538352bf48da7}
+
+
+\-Returns rank(\-A), where \-A is an n x m matrix. 
+
+\begin{DoxyReturn}{\-Returns}
+rank(\-A) on success and 0 for invalid input 
+\end{DoxyReturn}

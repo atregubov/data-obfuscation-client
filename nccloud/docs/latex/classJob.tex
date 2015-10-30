@@ -1,0 +1,193 @@
+\hypertarget{classJob}{\section{\-Job \-Class \-Reference}
+\label{classJob}\index{\-Job@{\-Job}}
+}
+
+
+\-Class for a storage/coding job assigned to a master storage/coding thread in \hyperlink{classFileOp}{\-File\-Op}.  
+
+
+
+
+{\ttfamily \#include $<$fileop.\-h$>$}
+
+\subsection*{\-Public \-Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classJob_a639625a71786e5ebaee5697a4fdb6dd0}{\-A\-C\-T\-I\-O\-N\-S} \{ \*
+\hyperlink{classJob_a639625a71786e5ebaee5697a4fdb6dd0a88681b55283b6d6a18dab547a5a0157e}{\-U\-L\-M\-E\-T\-A\-C\-H\-U\-N\-K\-S}, 
+\hyperlink{classJob_a639625a71786e5ebaee5697a4fdb6dd0aca189975ee24cea325469a6afbd61cc7}{\-U\-L\-M\-E\-T\-A}, 
+\hyperlink{classJob_a639625a71786e5ebaee5697a4fdb6dd0a7dc38d7c314a0751c433d1c4c7c0da7c}{\-D\-L\-C\-H\-U\-N\-K\-S}, 
+\hyperlink{classJob_a639625a71786e5ebaee5697a4fdb6dd0a7da1798dfa76789736879d8f0edb668c}{\-D\-L\-M\-E\-T\-A}, 
+\*
+\hyperlink{classJob_a639625a71786e5ebaee5697a4fdb6dd0aa2a3b77b77684cff94f531cd16bce014}{\-D\-I\-V\-I\-D\-E\-R}, 
+\hyperlink{classJob_a639625a71786e5ebaee5697a4fdb6dd0a5fa4d14da7528a295d2ed84cb17862a5}{\-D\-E\-C\-O\-D\-E}, 
+\hyperlink{classJob_a639625a71786e5ebaee5697a4fdb6dd0a5b0318833f77886b0a10ea2b0d707c19}{\-R\-E\-P\-A\-I\-R}
+ \}
+\begin{DoxyCompactList}\small\item\em \-All types of jobs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classJob_ac4915b7a68b2b4e6bf57c336e18abe63}{\-Job} (int \hyperlink{classJob_a5ac6c3e826332838d56cfb647b894179}{action}, \hyperlink{classCoding}{\-Coding} $\ast$\hyperlink{classJob_ad78a9a8f3f37b373f0b9212e50e47161}{coding}, std\-::vector$<$ \hyperlink{classStorage}{\-Storage} $\ast$ $>$ $\ast$\hyperlink{classJob_ad53e461116a332c139528df7899f0a9e}{storages}, std\-::string \&\hyperlink{classJob_a1222a22533b8e17d4e75e2f9b5cecaab}{tmpdir}, std\-::string \&\hyperlink{classJob_a7611809399acfa1a39f824ff0ad04c21}{filename})
+\item 
+void \hyperlink{classJob_a9f3dfcff17ca8458dfda34d0845a95ef}{follow\-\_\-job} (void)
+\begin{DoxyCompactList}\small\item\em \-Add the next job (if any) to the appropriate job queue. \end{DoxyCompactList}\item 
+void \hyperlink{classJob_a08bb941ff2cb16eaaa98c1eb35771680}{run\-\_\-job} (void)
+\begin{DoxyCompactList}\small\item\em \-Run the corresponding job routine for the current job, then call \hyperlink{classJob_a9f3dfcff17ca8458dfda34d0845a95ef}{follow\-\_\-job()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Data \-Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classJob_a5ac6c3e826332838d56cfb647b894179}{action}
+\begin{DoxyCompactList}\small\item\em job to carry out (see enum \-A\-C\-T\-I\-O\-N\-S) \end{DoxyCompactList}\item 
+\hyperlink{classCoding}{\-Coding} $\ast$ \hyperlink{classJob_ad78a9a8f3f37b373f0b9212e50e47161}{coding}
+\begin{DoxyCompactList}\small\item\em coding scheme used \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{classStorage}{\-Storage} $\ast$ $>$ $\ast$ \hyperlink{classJob_ad53e461116a332c139528df7899f0a9e}{storages}
+\begin{DoxyCompactList}\small\item\em all storage nodes used \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classJob_a1222a22533b8e17d4e75e2f9b5cecaab}{tmpdir}
+\begin{DoxyCompactList}\small\item\em path to temporary directory \end{DoxyCompactList}\item 
+std\-::string \hyperlink{classJob_a7611809399acfa1a39f824ff0ad04c21}{filename}
+\begin{DoxyCompactList}\small\item\em name of file to act on \end{DoxyCompactList}\item 
+std\-::vector$<$ int $>$ \hyperlink{classJob_a27b098f0eb47ccf65e011cea1f738277}{chunk\-\_\-indices}
+\begin{DoxyCompactList}\small\item\em indices of chunks involved in current job \end{DoxyCompactList}\item 
+std\-::vector$<$ int $>$ \hyperlink{classJob_ae18030f6a246c7fcb12e2048ae367ae5}{node\-\_\-indices}
+\begin{DoxyCompactList}\small\item\em indices of nodes involved in current job \end{DoxyCompactList}\item 
+\hyperlink{classJob}{\-Job} $\ast$ \hyperlink{classJob_a89cbef000d5b92aa67bac749ffb5b212}{next\-\_\-job}
+\begin{DoxyCompactList}\small\item\em pointer to an object describing the next job (\-N\-U\-L\-L for none) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Class for a storage/coding job assigned to a master storage/coding thread in \hyperlink{classFileOp}{\-File\-Op}. 
+
+
+
+\subsection{\-Member \-Enumeration \-Documentation}
+\hypertarget{classJob_a639625a71786e5ebaee5697a4fdb6dd0}{\index{\-Job@{\-Job}!\-A\-C\-T\-I\-O\-N\-S@{\-A\-C\-T\-I\-O\-N\-S}}
+\index{\-A\-C\-T\-I\-O\-N\-S@{\-A\-C\-T\-I\-O\-N\-S}!Job@{\-Job}}
+\subsubsection[{\-A\-C\-T\-I\-O\-N\-S}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \-Job\-::\-A\-C\-T\-I\-O\-N\-S}}}\label{classJob_a639625a71786e5ebaee5697a4fdb6dd0}
+
+
+\-All types of jobs. 
+
+\hyperlink{classStorage}{\-Storage} jobs $<$ \-D\-I\-V\-I\-D\-E\-R; coding jobs $>$ \-D\-I\-V\-I\-D\-E\-R. \begin{Desc}
+\item[\-Enumerator\-: ]\par
+\begin{description}
+\index{\-U\-L\-M\-E\-T\-A\-C\-H\-U\-N\-K\-S@{\-U\-L\-M\-E\-T\-A\-C\-H\-U\-N\-K\-S}!\-Job@{\-Job}}\index{\-Job@{\-Job}!\-U\-L\-M\-E\-T\-A\-C\-H\-U\-N\-K\-S@{\-U\-L\-M\-E\-T\-A\-C\-H\-U\-N\-K\-S}}\item[{\em 
+\hypertarget{classJob_a639625a71786e5ebaee5697a4fdb6dd0a88681b55283b6d6a18dab547a5a0157e}{\-U\-L\-M\-E\-T\-A\-C\-H\-U\-N\-K\-S}\label{classJob_a639625a71786e5ebaee5697a4fdb6dd0a88681b55283b6d6a18dab547a5a0157e}
+}]\index{\-U\-L\-M\-E\-T\-A@{\-U\-L\-M\-E\-T\-A}!\-Job@{\-Job}}\index{\-Job@{\-Job}!\-U\-L\-M\-E\-T\-A@{\-U\-L\-M\-E\-T\-A}}\item[{\em 
+\hypertarget{classJob_a639625a71786e5ebaee5697a4fdb6dd0aca189975ee24cea325469a6afbd61cc7}{\-U\-L\-M\-E\-T\-A}\label{classJob_a639625a71786e5ebaee5697a4fdb6dd0aca189975ee24cea325469a6afbd61cc7}
+}]\index{\-D\-L\-C\-H\-U\-N\-K\-S@{\-D\-L\-C\-H\-U\-N\-K\-S}!\-Job@{\-Job}}\index{\-Job@{\-Job}!\-D\-L\-C\-H\-U\-N\-K\-S@{\-D\-L\-C\-H\-U\-N\-K\-S}}\item[{\em 
+\hypertarget{classJob_a639625a71786e5ebaee5697a4fdb6dd0a7dc38d7c314a0751c433d1c4c7c0da7c}{\-D\-L\-C\-H\-U\-N\-K\-S}\label{classJob_a639625a71786e5ebaee5697a4fdb6dd0a7dc38d7c314a0751c433d1c4c7c0da7c}
+}]\index{\-D\-L\-M\-E\-T\-A@{\-D\-L\-M\-E\-T\-A}!\-Job@{\-Job}}\index{\-Job@{\-Job}!\-D\-L\-M\-E\-T\-A@{\-D\-L\-M\-E\-T\-A}}\item[{\em 
+\hypertarget{classJob_a639625a71786e5ebaee5697a4fdb6dd0a7da1798dfa76789736879d8f0edb668c}{\-D\-L\-M\-E\-T\-A}\label{classJob_a639625a71786e5ebaee5697a4fdb6dd0a7da1798dfa76789736879d8f0edb668c}
+}]\index{\-D\-I\-V\-I\-D\-E\-R@{\-D\-I\-V\-I\-D\-E\-R}!\-Job@{\-Job}}\index{\-Job@{\-Job}!\-D\-I\-V\-I\-D\-E\-R@{\-D\-I\-V\-I\-D\-E\-R}}\item[{\em 
+\hypertarget{classJob_a639625a71786e5ebaee5697a4fdb6dd0aa2a3b77b77684cff94f531cd16bce014}{\-D\-I\-V\-I\-D\-E\-R}\label{classJob_a639625a71786e5ebaee5697a4fdb6dd0aa2a3b77b77684cff94f531cd16bce014}
+}]\index{\-D\-E\-C\-O\-D\-E@{\-D\-E\-C\-O\-D\-E}!\-Job@{\-Job}}\index{\-Job@{\-Job}!\-D\-E\-C\-O\-D\-E@{\-D\-E\-C\-O\-D\-E}}\item[{\em 
+\hypertarget{classJob_a639625a71786e5ebaee5697a4fdb6dd0a5fa4d14da7528a295d2ed84cb17862a5}{\-D\-E\-C\-O\-D\-E}\label{classJob_a639625a71786e5ebaee5697a4fdb6dd0a5fa4d14da7528a295d2ed84cb17862a5}
+}]\index{\-R\-E\-P\-A\-I\-R@{\-R\-E\-P\-A\-I\-R}!\-Job@{\-Job}}\index{\-Job@{\-Job}!\-R\-E\-P\-A\-I\-R@{\-R\-E\-P\-A\-I\-R}}\item[{\em 
+\hypertarget{classJob_a639625a71786e5ebaee5697a4fdb6dd0a5b0318833f77886b0a10ea2b0d707c19}{\-R\-E\-P\-A\-I\-R}\label{classJob_a639625a71786e5ebaee5697a4fdb6dd0a5b0318833f77886b0a10ea2b0d707c19}
+}]\end{description}
+\end{Desc}
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classJob_ac4915b7a68b2b4e6bf57c336e18abe63}{\index{\-Job@{\-Job}!\-Job@{\-Job}}
+\index{\-Job@{\-Job}!Job@{\-Job}}
+\subsubsection[{\-Job}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Job\-::\-Job} (
+\begin{DoxyParamCaption}
+\item[{int}]{action, }
+\item[{{\bf \-Coding} $\ast$}]{coding, }
+\item[{std\-::vector$<$ {\bf \-Storage} $\ast$ $>$ $\ast$}]{storages, }
+\item[{std\-::string \&}]{tmpdir, }
+\item[{std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{classJob_ac4915b7a68b2b4e6bf57c336e18abe63}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classJob_a9f3dfcff17ca8458dfda34d0845a95ef}{\index{\-Job@{\-Job}!follow\-\_\-job@{follow\-\_\-job}}
+\index{follow\-\_\-job@{follow\-\_\-job}!Job@{\-Job}}
+\subsubsection[{follow\-\_\-job}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Job\-::follow\-\_\-job} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classJob_a9f3dfcff17ca8458dfda34d0845a95ef}
+
+
+\-Add the next job (if any) to the appropriate job queue. 
+
+\hypertarget{classJob_a08bb941ff2cb16eaaa98c1eb35771680}{\index{\-Job@{\-Job}!run\-\_\-job@{run\-\_\-job}}
+\index{run\-\_\-job@{run\-\_\-job}!Job@{\-Job}}
+\subsubsection[{run\-\_\-job}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Job\-::run\-\_\-job} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classJob_a08bb941ff2cb16eaaa98c1eb35771680}
+
+
+\-Run the corresponding job routine for the current job, then call \hyperlink{classJob_a9f3dfcff17ca8458dfda34d0845a95ef}{follow\-\_\-job()}. 
+
+
+
+\subsection{\-Field \-Documentation}
+\hypertarget{classJob_a5ac6c3e826332838d56cfb647b894179}{\index{\-Job@{\-Job}!action@{action}}
+\index{action@{action}!Job@{\-Job}}
+\subsubsection[{action}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-Job\-::action}}}\label{classJob_a5ac6c3e826332838d56cfb647b894179}
+
+
+job to carry out (see enum \-A\-C\-T\-I\-O\-N\-S) 
+
+\hypertarget{classJob_a27b098f0eb47ccf65e011cea1f738277}{\index{\-Job@{\-Job}!chunk\-\_\-indices@{chunk\-\_\-indices}}
+\index{chunk\-\_\-indices@{chunk\-\_\-indices}!Job@{\-Job}}
+\subsubsection[{chunk\-\_\-indices}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$int$>$ {\bf \-Job\-::chunk\-\_\-indices}}}\label{classJob_a27b098f0eb47ccf65e011cea1f738277}
+
+
+indices of chunks involved in current job 
+
+\hypertarget{classJob_ad78a9a8f3f37b373f0b9212e50e47161}{\index{\-Job@{\-Job}!coding@{coding}}
+\index{coding@{coding}!Job@{\-Job}}
+\subsubsection[{coding}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Coding}$\ast$ {\bf \-Job\-::coding}}}\label{classJob_ad78a9a8f3f37b373f0b9212e50e47161}
+
+
+coding scheme used 
+
+\hypertarget{classJob_a7611809399acfa1a39f824ff0ad04c21}{\index{\-Job@{\-Job}!filename@{filename}}
+\index{filename@{filename}!Job@{\-Job}}
+\subsubsection[{filename}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Job\-::filename}}}\label{classJob_a7611809399acfa1a39f824ff0ad04c21}
+
+
+name of file to act on 
+
+\hypertarget{classJob_a89cbef000d5b92aa67bac749ffb5b212}{\index{\-Job@{\-Job}!next\-\_\-job@{next\-\_\-job}}
+\index{next\-\_\-job@{next\-\_\-job}!Job@{\-Job}}
+\subsubsection[{next\-\_\-job}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Job}$\ast$ {\bf \-Job\-::next\-\_\-job}}}\label{classJob_a89cbef000d5b92aa67bac749ffb5b212}
+
+
+pointer to an object describing the next job (\-N\-U\-L\-L for none) 
+
+\hypertarget{classJob_ae18030f6a246c7fcb12e2048ae367ae5}{\index{\-Job@{\-Job}!node\-\_\-indices@{node\-\_\-indices}}
+\index{node\-\_\-indices@{node\-\_\-indices}!Job@{\-Job}}
+\subsubsection[{node\-\_\-indices}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$int$>$ {\bf \-Job\-::node\-\_\-indices}}}\label{classJob_ae18030f6a246c7fcb12e2048ae367ae5}
+
+
+indices of nodes involved in current job 
+
+\hypertarget{classJob_ad53e461116a332c139528df7899f0a9e}{\index{\-Job@{\-Job}!storages@{storages}}
+\index{storages@{storages}!Job@{\-Job}}
+\subsubsection[{storages}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<${\bf \-Storage} $\ast$$>$$\ast$ {\bf \-Job\-::storages}}}\label{classJob_ad53e461116a332c139528df7899f0a9e}
+
+
+all storage nodes used 
+
+\hypertarget{classJob_a1222a22533b8e17d4e75e2f9b5cecaab}{\index{\-Job@{\-Job}!tmpdir@{tmpdir}}
+\index{tmpdir@{tmpdir}!Job@{\-Job}}
+\subsubsection[{tmpdir}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-Job\-::tmpdir}}}\label{classJob_a1222a22533b8e17d4e75e2f9b5cecaab}
+
+
+path to temporary directory 
+
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{fileop_8h}{fileop.\-h}\item 
+\hyperlink{fileop_8cc}{fileop.\-cc}\end{DoxyCompactItemize}

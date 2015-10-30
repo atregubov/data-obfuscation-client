@@ -1,0 +1,10 @@
+This bundle includes 1) Jerasure, 2) libfmsr and 3) NCCloud.
+
+Jerasure is located under Jerasure/.  Refer to Jerasure/README.md and
+Jerasure/License.txt for its readme and license respectively.
+
+libfmsr is located under libfmsr/.  Refer to libfmsr/README and libfmsr/LICENSE
+for its readme and license respectively.
+
+NCCloud is located under nccloud/.  Refer to nccloud/README and nccloud/LICENSE
+for its readme and license respectively.

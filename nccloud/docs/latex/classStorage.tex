@@ -1,0 +1,341 @@
+\hypertarget{classStorage}{\section{\-Storage \-Class \-Reference}
+\label{classStorage}\index{\-Storage@{\-Storage}}
+}
+
+
+\-Abstract base class for storage modules.  
+
+
+
+
+{\ttfamily \#include $<$storage.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \hyperlink{classStorage_a74753801bdc4df993c5a8feb4eb65918}{init} (std\-::map$<$ std\-::string, std\-::string $>$ \&storage\-\_\-param)=0
+\begin{DoxyCompactList}\small\item\em \-Initialize the \hyperlink{classStorage}{\-Storage} instance based on storage\-\_\-param. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a0fbaf557ce9a2bd4b1b0a00296d8cf66}{store\-\_\-chunk} (std\-::string \&srcdir, std\-::string \&filename, int chunk\-\_\-index)=0
+\begin{DoxyCompactList}\small\item\em \-Upload a locally-\/stored chunk to a destination repository. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a90bad676d3caaca1aa48243c512c7f98}{store\-\_\-chunks} (std\-::string \&srcdir, std\-::string \&filename, std\-::vector$<$ int $>$ \&chunk\-\_\-indices)=0
+\begin{DoxyCompactList}\small\item\em \-Batched version of \hyperlink{classStorage_a0fbaf557ce9a2bd4b1b0a00296d8cf66}{store\-\_\-chunk()}. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a770cc3b02e9cd00176f3766d7f1cef86}{store\-\_\-metadata} (std\-::string \&srcdir, std\-::string \&filename)=0
+\begin{DoxyCompactList}\small\item\em \-Upload a locally-\/stored metadata file to a destination repository. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a3c7a7ce8d22ed2793c83c9093c55218d}{store\-\_\-metadata\-\_\-and\-\_\-chunks} (std\-::string \&srcdir, std\-::string \&filename, std\-::vector$<$ int $>$ \&chunk\-\_\-indices)=0
+\begin{DoxyCompactList}\small\item\em \-Combined \hyperlink{classStorage_a770cc3b02e9cd00176f3766d7f1cef86}{store\-\_\-metadata()} and \hyperlink{classStorage_a90bad676d3caaca1aa48243c512c7f98}{store\-\_\-chunks()}. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a3e71fccbf04844423c233b0d836ef2eb}{get\-\_\-chunk} (std\-::string \&dstdir, std\-::string \&filename, int chunk\-\_\-index)=0
+\begin{DoxyCompactList}\small\item\em \-Download a chunk from a repository to a local destination. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a50be4d6b6a4208280e0ea462d71240da}{get\-\_\-chunks} (std\-::string \&dstdir, std\-::string \&filename, std\-::vector$<$ int $>$ \&chunk\-\_\-indices)=0
+\begin{DoxyCompactList}\small\item\em \-Batched version of \hyperlink{classStorage_a3e71fccbf04844423c233b0d836ef2eb}{get\-\_\-chunk()}. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_ab5e0d5edea19961e934c7fcec9b392f7}{get\-\_\-metadata} (std\-::string \&dstdir, std\-::string \&filename)=0
+\begin{DoxyCompactList}\small\item\em \-Download a metadata file from a repository to a local destination. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a7f0b2f3cd74ad0faffa3b93147ecf777}{get\-\_\-metadata\-\_\-and\-\_\-chunks} (std\-::string \&dstdir, std\-::string \&filename, std\-::vector$<$ int $>$ \&chunk\-\_\-indices)=0
+\begin{DoxyCompactList}\small\item\em \-Combined \hyperlink{classStorage_ab5e0d5edea19961e934c7fcec9b392f7}{get\-\_\-metadata()} and \hyperlink{classStorage_a50be4d6b6a4208280e0ea462d71240da}{get\-\_\-chunks()}. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_ab49383c5d8f62c8e80fa10ba9f1d1e9a}{delete\-\_\-chunk} (std\-::string \&filename, int chunk\-\_\-index)=0
+\begin{DoxyCompactList}\small\item\em \-Delete a chunk from a repository. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a49753db906257b2d0514ae2d9926e713}{delete\-\_\-chunks} (std\-::string \&filename, std\-::vector$<$ int $>$ \&chunk\-\_\-indices)=0
+\begin{DoxyCompactList}\small\item\em \-Batched version of \hyperlink{classStorage_ab49383c5d8f62c8e80fa10ba9f1d1e9a}{delete\-\_\-chunk()}. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_ac8c03f9affa684f4ab662bb34033b5c4}{delete\-\_\-metadata} (std\-::string \&filename)=0
+\begin{DoxyCompactList}\small\item\em \-Delete a metadata file from a repository. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a8716b136208b67fdbd2ce4fa15d37e59}{delete\-\_\-metadata\-\_\-and\-\_\-chunks} (std\-::string \&filename, std\-::vector$<$ int $>$ \&chunk\-\_\-indices)=0
+\begin{DoxyCompactList}\small\item\em \-Combined \hyperlink{classStorage_ac8c03f9affa684f4ab662bb34033b5c4}{delete\-\_\-metadata()} and \hyperlink{classStorage_a49753db906257b2d0514ae2d9926e713}{delete\-\_\-chunks()}. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a558507886c46dd57befbb737f0b50e31}{list\-\_\-files} (void)=0
+\begin{DoxyCompactList}\small\item\em \-Print a list of all files stored on the repository. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classStorage_a8a2ecf3c5a17d9d913ade2c8649bc616}{check\-\_\-health} (void)=0
+\begin{DoxyCompactList}\small\item\em \-Checks accessibility of repository. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classStorage}{\-Storage} $\ast$ \hyperlink{classStorage_ad5805de76137e5d9adaf5497ea783e71}{use\-\_\-storage} (int type)
+\begin{DoxyCompactList}\small\item\em \-Return an instance of a storage scheme, based on user's choice. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Abstract base class for storage modules. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classStorage_a8a2ecf3c5a17d9d913ade2c8649bc616}{\index{\-Storage@{\-Storage}!check\-\_\-health@{check\-\_\-health}}
+\index{check\-\_\-health@{check\-\_\-health}!Storage@{\-Storage}}
+\subsubsection[{check\-\_\-health}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::check\-\_\-health} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a8a2ecf3c5a17d9d913ade2c8649bc616}
+
+
+\-Checks accessibility of repository. 
+
+\begin{DoxyReturn}{\-Returns}
+0 if accessible, -\/1 if inaccessible 
+\end{DoxyReturn}
+\hypertarget{classStorage_ab49383c5d8f62c8e80fa10ba9f1d1e9a}{\index{\-Storage@{\-Storage}!delete\-\_\-chunk@{delete\-\_\-chunk}}
+\index{delete\-\_\-chunk@{delete\-\_\-chunk}!Storage@{\-Storage}}
+\subsubsection[{delete\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::delete\-\_\-chunk} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{filename, }
+\item[{int}]{chunk\-\_\-index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_ab49383c5d8f62c8e80fa10ba9f1d1e9a}
+
+
+\-Delete a chunk from a repository. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em filename} & name of file being deleted \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-index} & chunk index of chunk to be deleted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure (e.\-g., missing parameters) 
+\end{DoxyReturn}
+\hypertarget{classStorage_a49753db906257b2d0514ae2d9926e713}{\index{\-Storage@{\-Storage}!delete\-\_\-chunks@{delete\-\_\-chunks}}
+\index{delete\-\_\-chunks@{delete\-\_\-chunks}!Storage@{\-Storage}}
+\subsubsection[{delete\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::delete\-\_\-chunks} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{filename, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a49753db906257b2d0514ae2d9926e713}
+
+
+\-Batched version of \hyperlink{classStorage_ab49383c5d8f62c8e80fa10ba9f1d1e9a}{delete\-\_\-chunk()}. 
+
+\hypertarget{classStorage_ac8c03f9affa684f4ab662bb34033b5c4}{\index{\-Storage@{\-Storage}!delete\-\_\-metadata@{delete\-\_\-metadata}}
+\index{delete\-\_\-metadata@{delete\-\_\-metadata}!Storage@{\-Storage}}
+\subsubsection[{delete\-\_\-metadata}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::delete\-\_\-metadata} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_ac8c03f9affa684f4ab662bb34033b5c4}
+
+
+\-Delete a metadata file from a repository. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em filename} & name of file being deleted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure (e.\-g., missing parameters) 
+\end{DoxyReturn}
+\hypertarget{classStorage_a8716b136208b67fdbd2ce4fa15d37e59}{\index{\-Storage@{\-Storage}!delete\-\_\-metadata\-\_\-and\-\_\-chunks@{delete\-\_\-metadata\-\_\-and\-\_\-chunks}}
+\index{delete\-\_\-metadata\-\_\-and\-\_\-chunks@{delete\-\_\-metadata\-\_\-and\-\_\-chunks}!Storage@{\-Storage}}
+\subsubsection[{delete\-\_\-metadata\-\_\-and\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::delete\-\_\-metadata\-\_\-and\-\_\-chunks} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{filename, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a8716b136208b67fdbd2ce4fa15d37e59}
+
+
+\-Combined \hyperlink{classStorage_ac8c03f9affa684f4ab662bb34033b5c4}{delete\-\_\-metadata()} and \hyperlink{classStorage_a49753db906257b2d0514ae2d9926e713}{delete\-\_\-chunks()}. 
+
+\hypertarget{classStorage_a3e71fccbf04844423c233b0d836ef2eb}{\index{\-Storage@{\-Storage}!get\-\_\-chunk@{get\-\_\-chunk}}
+\index{get\-\_\-chunk@{get\-\_\-chunk}!Storage@{\-Storage}}
+\subsubsection[{get\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::get\-\_\-chunk} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{dstdir, }
+\item[{std\-::string \&}]{filename, }
+\item[{int}]{chunk\-\_\-index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a3e71fccbf04844423c233b0d836ef2eb}
+
+
+\-Download a chunk from a repository to a local destination. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em dstdir} & directory under which chunk is to be stored locally \\
+\hline
+\mbox{\tt in}  & {\em filename} & name of file being decoded \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-index} & chunk index of chunk to be retrieved \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure (e.\-g., missing parameters) 
+\end{DoxyReturn}
+\hypertarget{classStorage_a50be4d6b6a4208280e0ea462d71240da}{\index{\-Storage@{\-Storage}!get\-\_\-chunks@{get\-\_\-chunks}}
+\index{get\-\_\-chunks@{get\-\_\-chunks}!Storage@{\-Storage}}
+\subsubsection[{get\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::get\-\_\-chunks} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{dstdir, }
+\item[{std\-::string \&}]{filename, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a50be4d6b6a4208280e0ea462d71240da}
+
+
+\-Batched version of \hyperlink{classStorage_a3e71fccbf04844423c233b0d836ef2eb}{get\-\_\-chunk()}. 
+
+\hypertarget{classStorage_ab5e0d5edea19961e934c7fcec9b392f7}{\index{\-Storage@{\-Storage}!get\-\_\-metadata@{get\-\_\-metadata}}
+\index{get\-\_\-metadata@{get\-\_\-metadata}!Storage@{\-Storage}}
+\subsubsection[{get\-\_\-metadata}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::get\-\_\-metadata} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{dstdir, }
+\item[{std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_ab5e0d5edea19961e934c7fcec9b392f7}
+
+
+\-Download a metadata file from a repository to a local destination. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em dstdir} & directory under which metadata file is to be stored locally \\
+\hline
+\mbox{\tt in}  & {\em filename} & name of file being decoded \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure (e.\-g., missing parameters) 
+\end{DoxyReturn}
+\hypertarget{classStorage_a7f0b2f3cd74ad0faffa3b93147ecf777}{\index{\-Storage@{\-Storage}!get\-\_\-metadata\-\_\-and\-\_\-chunks@{get\-\_\-metadata\-\_\-and\-\_\-chunks}}
+\index{get\-\_\-metadata\-\_\-and\-\_\-chunks@{get\-\_\-metadata\-\_\-and\-\_\-chunks}!Storage@{\-Storage}}
+\subsubsection[{get\-\_\-metadata\-\_\-and\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::get\-\_\-metadata\-\_\-and\-\_\-chunks} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{dstdir, }
+\item[{std\-::string \&}]{filename, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a7f0b2f3cd74ad0faffa3b93147ecf777}
+
+
+\-Combined \hyperlink{classStorage_ab5e0d5edea19961e934c7fcec9b392f7}{get\-\_\-metadata()} and \hyperlink{classStorage_a50be4d6b6a4208280e0ea462d71240da}{get\-\_\-chunks()}. 
+
+\hypertarget{classStorage_a74753801bdc4df993c5a8feb4eb65918}{\index{\-Storage@{\-Storage}!init@{init}}
+\index{init@{init}!Storage@{\-Storage}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::init} (
+\begin{DoxyParamCaption}
+\item[{std\-::map$<$ std\-::string, std\-::string $>$ \&}]{storage\-\_\-param}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a74753801bdc4df993c5a8feb4eb65918}
+
+
+\-Initialize the \hyperlink{classStorage}{\-Storage} instance based on storage\-\_\-param. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em storage\-\_\-param} & dictionary of parameters for this repository \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure (e.\-g., missing parameters) 
+\end{DoxyReturn}
+\hypertarget{classStorage_a558507886c46dd57befbb737f0b50e31}{\index{\-Storage@{\-Storage}!list\-\_\-files@{list\-\_\-files}}
+\index{list\-\_\-files@{list\-\_\-files}!Storage@{\-Storage}}
+\subsubsection[{list\-\_\-files}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::list\-\_\-files} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a558507886c46dd57befbb737f0b50e31}
+
+
+\-Print a list of all files stored on the repository. 
+
+\begin{DoxyReturn}{\-Returns}
+0 if accessible, -\/1 if inaccessible 
+\end{DoxyReturn}
+\hypertarget{classStorage_a0fbaf557ce9a2bd4b1b0a00296d8cf66}{\index{\-Storage@{\-Storage}!store\-\_\-chunk@{store\-\_\-chunk}}
+\index{store\-\_\-chunk@{store\-\_\-chunk}!Storage@{\-Storage}}
+\subsubsection[{store\-\_\-chunk}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::store\-\_\-chunk} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{srcdir, }
+\item[{std\-::string \&}]{filename, }
+\item[{int}]{chunk\-\_\-index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a0fbaf557ce9a2bd4b1b0a00296d8cf66}
+
+
+\-Upload a locally-\/stored chunk to a destination repository. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em srcdir} & directory under which chunk is stored locally \\
+\hline
+\mbox{\tt in}  & {\em filename} & name of file being encoded \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-index} & chunk index of chunk to be stored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure (e.\-g., missing parameters) 
+\end{DoxyReturn}
+\hypertarget{classStorage_a90bad676d3caaca1aa48243c512c7f98}{\index{\-Storage@{\-Storage}!store\-\_\-chunks@{store\-\_\-chunks}}
+\index{store\-\_\-chunks@{store\-\_\-chunks}!Storage@{\-Storage}}
+\subsubsection[{store\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::store\-\_\-chunks} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{srcdir, }
+\item[{std\-::string \&}]{filename, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a90bad676d3caaca1aa48243c512c7f98}
+
+
+\-Batched version of \hyperlink{classStorage_a0fbaf557ce9a2bd4b1b0a00296d8cf66}{store\-\_\-chunk()}. 
+
+\hypertarget{classStorage_a770cc3b02e9cd00176f3766d7f1cef86}{\index{\-Storage@{\-Storage}!store\-\_\-metadata@{store\-\_\-metadata}}
+\index{store\-\_\-metadata@{store\-\_\-metadata}!Storage@{\-Storage}}
+\subsubsection[{store\-\_\-metadata}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::store\-\_\-metadata} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{srcdir, }
+\item[{std\-::string \&}]{filename}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a770cc3b02e9cd00176f3766d7f1cef86}
+
+
+\-Upload a locally-\/stored metadata file to a destination repository. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em srcdir} & directory under which metadata file is stored locally \\
+\hline
+\mbox{\tt in}  & {\em filename} & name of file being encoded \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success, -\/1 on failure (e.\-g., missing parameters) 
+\end{DoxyReturn}
+\hypertarget{classStorage_a3c7a7ce8d22ed2793c83c9093c55218d}{\index{\-Storage@{\-Storage}!store\-\_\-metadata\-\_\-and\-\_\-chunks@{store\-\_\-metadata\-\_\-and\-\_\-chunks}}
+\index{store\-\_\-metadata\-\_\-and\-\_\-chunks@{store\-\_\-metadata\-\_\-and\-\_\-chunks}!Storage@{\-Storage}}
+\subsubsection[{store\-\_\-metadata\-\_\-and\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}virtual int {\bf \-Storage\-::store\-\_\-metadata\-\_\-and\-\_\-chunks} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{srcdir, }
+\item[{std\-::string \&}]{filename, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}\label{classStorage_a3c7a7ce8d22ed2793c83c9093c55218d}
+
+
+\-Combined \hyperlink{classStorage_a770cc3b02e9cd00176f3766d7f1cef86}{store\-\_\-metadata()} and \hyperlink{classStorage_a90bad676d3caaca1aa48243c512c7f98}{store\-\_\-chunks()}. 
+
+\hypertarget{classStorage_ad5805de76137e5d9adaf5497ea783e71}{\index{\-Storage@{\-Storage}!use\-\_\-storage@{use\-\_\-storage}}
+\index{use\-\_\-storage@{use\-\_\-storage}!Storage@{\-Storage}}
+\subsubsection[{use\-\_\-storage}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Storage} $\ast$ {\bf \-Storage\-::use\-\_\-storage} (
+\begin{DoxyParamCaption}
+\item[{int}]{type}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classStorage_ad5805de76137e5d9adaf5497ea783e71}
+
+
+\-Return an instance of a storage scheme, based on user's choice. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em type} & choice of coding scheme (0 = \-F\-M\-S\-R code) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+an instance of an appropriate subclass of \hyperlink{classStorage}{\-Storage} 
+\end{DoxyReturn}
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{storage_8h}{storage.\-h}\item 
+\hyperlink{storage_8cc}{storage.\-cc}\end{DoxyCompactItemize}

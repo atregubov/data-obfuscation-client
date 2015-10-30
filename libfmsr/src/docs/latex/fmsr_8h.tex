@@ -1,0 +1,399 @@
+\hypertarget{fmsr_8h}{\section{fmsr.\-h \-File \-Reference}
+\label{fmsr_8h}\index{fmsr.\-h@{fmsr.\-h}}
+}
+
+
+\-Contains prototypes for functions implemented in \hyperlink{fmsr_8c}{fmsr.\-c}, main include file accessed by third-\/party applications.  
+
+
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+\subsection*{\-Data \-Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structfmsr__repair__hints}{fmsr\-\_\-repair\-\_\-hints}
+\begin{DoxyCompactList}\small\item\em struct to hold hints from user to speed up repair process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{fmsr_8h_aa6c1fde6ba4ab1b983895e3ac1d5e05f}{alloc\-\_\-encode\-\_\-matrix}(k, n)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc(\hyperlink{fmsr_8h_a311bed5bb7d417632eecd175e23cd448}{fmsr\-\_\-nc}(k, n) $\ast$ \hyperlink{fmsr_8h_a9c8cb79d6a92430ef24d90af13530499}{fmsr\-\_\-nn}(k, n))
+\item 
+\#define \hyperlink{fmsr_8h_a6a19a28c51784f25a508c6893871a00b}{alloc\-\_\-repair\-\_\-matrix}(k, n)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc(\hyperlink{fmsr_8h_af87674560823ce0b89a73a2c2d50f209}{fmsr\-\_\-chunks\-\_\-per\-\_\-node}(k, n) $\ast$ (n-\/1))
+\item 
+\#define \hyperlink{fmsr_8h_ae003bfbb19dadbe878224892e809141e}{alloc\-\_\-native\-\_\-chunks}(k, n, filesize)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc(\hyperlink{fmsr_8h_a7e923e0eef4d32dbdfd77de7bf5ddd90}{fmsr\-\_\-padded\-\_\-size}(k, n, filesize))
+\item 
+\#define \hyperlink{fmsr_8h_a4fc52b2bf986caee10c33504405b06d1}{alloc\-\_\-code\-\_\-chunks}(k, n, filesize)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc(\hyperlink{fmsr_8h_a311bed5bb7d417632eecd175e23cd448}{fmsr\-\_\-nc}(k, n) $\ast$ \hyperlink{fmsr_8h_a7e923e0eef4d32dbdfd77de7bf5ddd90}{fmsr\-\_\-padded\-\_\-size}(k, n, filesize)/\hyperlink{fmsr_8h_a9c8cb79d6a92430ef24d90af13530499}{fmsr\-\_\-nn}(k, n))
+\item 
+\#define \hyperlink{fmsr_8h_afed62ad85aae1de0d559f455b858f884}{alloc\-\_\-decode\-\_\-chunk\-\_\-indices}(k, n)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc(\hyperlink{fmsr_8h_a9c8cb79d6a92430ef24d90af13530499}{fmsr\-\_\-nn}(k, n))
+\item 
+\#define \hyperlink{fmsr_8h_acd39a6db58b8c3145e4807605956ee2b}{alloc\-\_\-decode\-\_\-chunks}(k, n, chunksize)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc(\hyperlink{fmsr_8h_a9c8cb79d6a92430ef24d90af13530499}{fmsr\-\_\-nn}(k, n) $\ast$ chunksize)
+\item 
+\#define \hyperlink{fmsr_8h_aa86c2e1101d5fe1291082a5ffa900516}{alloc\-\_\-chunks\-\_\-to\-\_\-retrieve}(k, n)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc(n-\/1)
+\item 
+\#define \hyperlink{fmsr_8h_a3f86eccba00e75844552cb1358cc62cb}{alloc\-\_\-retrieved\-\_\-chunks}(k, n, chunksize)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc((n-\/1) $\ast$ chunksize)
+\item 
+\#define \hyperlink{fmsr_8h_a963f6d79a8a7b7ea5a593b2e485c9218}{alloc\-\_\-new\-\_\-code\-\_\-chunks}(k, n, chunksize)~(\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$)malloc(\hyperlink{fmsr_8h_af87674560823ce0b89a73a2c2d50f209}{fmsr\-\_\-chunks\-\_\-per\-\_\-node}(k, n) $\ast$ chunksize)
+\end{DoxyCompactItemize}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{fmsr_8h_a700a138b7b2ddf636da01883ddc103da}{fmsr\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em \-Must be called first before using any core functions in the library. \end{DoxyCompactList}\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{fmsr_8h_af9107c40b552212738f90c59068a2d63}{fmsr\-\_\-nodeid} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} index)
+\begin{DoxyCompactList}\small\item\em \-Returns id of the node where the index-\/th chunk resides, or 255 on failure. \end{DoxyCompactList}\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{fmsr_8h_af87674560823ce0b89a73a2c2d50f209}{fmsr\-\_\-chunks\-\_\-per\-\_\-node} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n)
+\begin{DoxyCompactList}\small\item\em \-Returns the number of chunks per node, or 255 on failure. \end{DoxyCompactList}\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{fmsr_8h_a891d7d17dd04e847fe07bfd1ddd9f3e3}{fmsr\-\_\-chunks\-\_\-on\-\_\-node} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} node, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$chunk\-\_\-indices)
+\begin{DoxyCompactList}\small\item\em \-Returns the indices of chunks on a certain node through chunk\-\_\-indices, or 255 on failure. \end{DoxyCompactList}\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{fmsr_8h_a9c8cb79d6a92430ef24d90af13530499}{fmsr\-\_\-nn} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n)
+\begin{DoxyCompactList}\small\item\em \-Returns the number of native chunks. \end{DoxyCompactList}\item 
+\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} \hyperlink{fmsr_8h_a311bed5bb7d417632eecd175e23cd448}{fmsr\-\_\-nc} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n)
+\begin{DoxyCompactList}\small\item\em \-Returns the number of code chunks. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{fmsr_8h_a7e923e0eef4d32dbdfd77de7bf5ddd90}{fmsr\-\_\-padded\-\_\-size} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em \-Returns the size of input file after being padded. \end{DoxyCompactList}\item 
+int \hyperlink{fmsr_8h_a58e70b421387bd44f0a320cc1285e25f}{fmsr\-\_\-encode} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$data, size\-\_\-t data\-\_\-size, int create\-\_\-new, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$code\-\_\-chunks, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$encode\-\_\-matrix)
+\begin{DoxyCompactList}\small\item\em \-Splits file into native chunks and encodes into code chunks. \end{DoxyCompactList}\item 
+int \hyperlink{fmsr_8h_ad0f82cd90954b5a3cbeb14e16e761b73}{fmsr\-\_\-decode} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$code\-\_\-chunks, size\-\_\-t chunk\-\_\-size, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$chunk\-\_\-indices, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} num\-\_\-chunks, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$encode\-\_\-matrix, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$decode\-\_\-matrix, int create\-\_\-new, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$data, size\-\_\-t $\ast$data\-\_\-size)
+\begin{DoxyCompactList}\small\item\em \-Decodes code chunks to give the original data. \end{DoxyCompactList}\item 
+int \hyperlink{fmsr_8h_aba1540735cbbc0b921f8b0e6df977478}{fmsr\-\_\-repair} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} k, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} n, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$encode\-\_\-matrix, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$erasures, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} num\-\_\-erasures, \hyperlink{structfmsr__repair__hints}{fmsr\-\_\-repair\-\_\-hints} $\ast$hints, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$new\-\_\-encode\-\_\-matrix, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$repair\-\_\-matrix, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$chunks\-\_\-to\-\_\-retrieve, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$num\-\_\-chunks\-\_\-to\-\_\-retrieve)
+\begin{DoxyCompactList}\small\item\em \-Informs caller of the chunks and encoding matrix used in repair. \end{DoxyCompactList}\item 
+void \hyperlink{fmsr_8h_a523a942fd3f3ca6dcf7be2efc77c4a10}{fmsr\-\_\-regenerate} (\hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$repair\-\_\-matrix, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} rows, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} cols, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$retrieved\-\_\-chunks, size\-\_\-t chunk\-\_\-size, \hyperlink{gf_8h_a339b4ec591f7b3fed03e4be7c9482508}{gf} $\ast$new\-\_\-code\-\_\-chunks)
+\begin{DoxyCompactList}\small\item\em \-Generates new code\-\_\-chunks from existing code\-\_\-chunks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Contains prototypes for functions implemented in \hyperlink{fmsr_8c}{fmsr.\-c}, main include file accessed by third-\/party applications. \begin{DoxyAuthor}{\-Author}
+\-Henry \-Chen (\href{mailto:chchen@cse.cuhk.edu.hk}{\tt chchen@cse.\-cuhk.\-edu.\-hk}) 
+\end{DoxyAuthor}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{fmsr_8h_aa86c2e1101d5fe1291082a5ffa900516}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-chunks\-\_\-to\-\_\-retrieve@{alloc\-\_\-chunks\-\_\-to\-\_\-retrieve}}
+\index{alloc\-\_\-chunks\-\_\-to\-\_\-retrieve@{alloc\-\_\-chunks\-\_\-to\-\_\-retrieve}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-chunks\-\_\-to\-\_\-retrieve}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-chunks\-\_\-to\-\_\-retrieve}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc(n-\/1)}}\label{fmsr_8h_aa86c2e1101d5fe1291082a5ffa900516}
+\hypertarget{fmsr_8h_a4fc52b2bf986caee10c33504405b06d1}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-code\-\_\-chunks@{alloc\-\_\-code\-\_\-chunks}}
+\index{alloc\-\_\-code\-\_\-chunks@{alloc\-\_\-code\-\_\-chunks}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-code\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-code\-\_\-chunks}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n, }
+\item[{}]{filesize}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc({\bf fmsr\-\_\-nc}(k, n) $\ast$ {\bf fmsr\-\_\-padded\-\_\-size}(k, n, filesize)/{\bf fmsr\-\_\-nn}(k, n))}}\label{fmsr_8h_a4fc52b2bf986caee10c33504405b06d1}
+\hypertarget{fmsr_8h_afed62ad85aae1de0d559f455b858f884}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-decode\-\_\-chunk\-\_\-indices@{alloc\-\_\-decode\-\_\-chunk\-\_\-indices}}
+\index{alloc\-\_\-decode\-\_\-chunk\-\_\-indices@{alloc\-\_\-decode\-\_\-chunk\-\_\-indices}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-decode\-\_\-chunk\-\_\-indices}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-decode\-\_\-chunk\-\_\-indices}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc({\bf fmsr\-\_\-nn}(k, n))}}\label{fmsr_8h_afed62ad85aae1de0d559f455b858f884}
+\hypertarget{fmsr_8h_acd39a6db58b8c3145e4807605956ee2b}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-decode\-\_\-chunks@{alloc\-\_\-decode\-\_\-chunks}}
+\index{alloc\-\_\-decode\-\_\-chunks@{alloc\-\_\-decode\-\_\-chunks}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-decode\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-decode\-\_\-chunks}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n, }
+\item[{}]{chunksize}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc({\bf fmsr\-\_\-nn}(k, n) $\ast$ chunksize)}}\label{fmsr_8h_acd39a6db58b8c3145e4807605956ee2b}
+\hypertarget{fmsr_8h_aa6c1fde6ba4ab1b983895e3ac1d5e05f}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-encode\-\_\-matrix@{alloc\-\_\-encode\-\_\-matrix}}
+\index{alloc\-\_\-encode\-\_\-matrix@{alloc\-\_\-encode\-\_\-matrix}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-encode\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-encode\-\_\-matrix}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc({\bf fmsr\-\_\-nc}(k, n) $\ast$ {\bf fmsr\-\_\-nn}(k, n))}}\label{fmsr_8h_aa6c1fde6ba4ab1b983895e3ac1d5e05f}
+\hypertarget{fmsr_8h_ae003bfbb19dadbe878224892e809141e}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-native\-\_\-chunks@{alloc\-\_\-native\-\_\-chunks}}
+\index{alloc\-\_\-native\-\_\-chunks@{alloc\-\_\-native\-\_\-chunks}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-native\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-native\-\_\-chunks}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n, }
+\item[{}]{filesize}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc({\bf fmsr\-\_\-padded\-\_\-size}(k, n, filesize))}}\label{fmsr_8h_ae003bfbb19dadbe878224892e809141e}
+\hypertarget{fmsr_8h_a963f6d79a8a7b7ea5a593b2e485c9218}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-new\-\_\-code\-\_\-chunks@{alloc\-\_\-new\-\_\-code\-\_\-chunks}}
+\index{alloc\-\_\-new\-\_\-code\-\_\-chunks@{alloc\-\_\-new\-\_\-code\-\_\-chunks}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-new\-\_\-code\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-new\-\_\-code\-\_\-chunks}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n, }
+\item[{}]{chunksize}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc({\bf fmsr\-\_\-chunks\-\_\-per\-\_\-node}(k, n) $\ast$ chunksize)}}\label{fmsr_8h_a963f6d79a8a7b7ea5a593b2e485c9218}
+\hypertarget{fmsr_8h_a6a19a28c51784f25a508c6893871a00b}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-repair\-\_\-matrix@{alloc\-\_\-repair\-\_\-matrix}}
+\index{alloc\-\_\-repair\-\_\-matrix@{alloc\-\_\-repair\-\_\-matrix}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-repair\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-repair\-\_\-matrix}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc({\bf fmsr\-\_\-chunks\-\_\-per\-\_\-node}(k, n) $\ast$ (n-\/1))}}\label{fmsr_8h_a6a19a28c51784f25a508c6893871a00b}
+\hypertarget{fmsr_8h_a3f86eccba00e75844552cb1358cc62cb}{\index{fmsr.\-h@{fmsr.\-h}!alloc\-\_\-retrieved\-\_\-chunks@{alloc\-\_\-retrieved\-\_\-chunks}}
+\index{alloc\-\_\-retrieved\-\_\-chunks@{alloc\-\_\-retrieved\-\_\-chunks}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{alloc\-\_\-retrieved\-\_\-chunks}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf alloc\-\_\-retrieved\-\_\-chunks}(
+\begin{DoxyParamCaption}
+\item[{}]{k, }
+\item[{}]{n, }
+\item[{}]{chunksize}
+\end{DoxyParamCaption}
+)~({\bf gf} $\ast$)malloc((n-\/1) $\ast$ chunksize)}}\label{fmsr_8h_a3f86eccba00e75844552cb1358cc62cb}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{fmsr_8h_a891d7d17dd04e847fe07bfd1ddd9f3e3}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-chunks\-\_\-on\-\_\-node@{fmsr\-\_\-chunks\-\_\-on\-\_\-node}}
+\index{fmsr\-\_\-chunks\-\_\-on\-\_\-node@{fmsr\-\_\-chunks\-\_\-on\-\_\-node}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-chunks\-\_\-on\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf fmsr\-\_\-chunks\-\_\-on\-\_\-node} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf}}]{node, }
+\item[{{\bf gf} $\ast$}]{chunk\-\_\-indices}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_a891d7d17dd04e847fe07bfd1ddd9f3e3}
+
+
+\-Returns the indices of chunks on a certain node through chunk\-\_\-indices, or 255 on failure. 
+
+\hypertarget{fmsr_8h_af87674560823ce0b89a73a2c2d50f209}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-chunks\-\_\-per\-\_\-node@{fmsr\-\_\-chunks\-\_\-per\-\_\-node}}
+\index{fmsr\-\_\-chunks\-\_\-per\-\_\-node@{fmsr\-\_\-chunks\-\_\-per\-\_\-node}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-chunks\-\_\-per\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf fmsr\-\_\-chunks\-\_\-per\-\_\-node} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_af87674560823ce0b89a73a2c2d50f209}
+
+
+\-Returns the number of chunks per node, or 255 on failure. 
+
+\hypertarget{fmsr_8h_ad0f82cd90954b5a3cbeb14e16e761b73}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-decode@{fmsr\-\_\-decode}}
+\index{fmsr\-\_\-decode@{fmsr\-\_\-decode}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-decode}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fmsr\-\_\-decode} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{code\-\_\-chunks, }
+\item[{size\-\_\-t}]{chunk\-\_\-size, }
+\item[{{\bf gf} $\ast$}]{chunk\-\_\-indices, }
+\item[{{\bf gf}}]{num\-\_\-chunks, }
+\item[{{\bf gf} $\ast$}]{encode\-\_\-matrix, }
+\item[{{\bf gf} $\ast$}]{decode\-\_\-matrix, }
+\item[{int}]{create\-\_\-new, }
+\item[{{\bf gf} $\ast$}]{data, }
+\item[{size\-\_\-t $\ast$}]{data\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_ad0f82cd90954b5a3cbeb14e16e761b73}
+
+
+\-Decodes code chunks to give the original data. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em k,n} & (n,k)-\/\-F\-M\-S\-R \\
+\hline
+\mbox{\tt in}  & {\em code\-\_\-chunks} & retrieved code chunks \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-size} & size of each code chunk \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-indices} & indices of retrieved chunks \\
+\hline
+\mbox{\tt in}  & {\em num\-\_\-chunks} & number of chunks retrieved \\
+\hline
+\mbox{\tt in}  & {\em encode\-\_\-matrix} & original encoding matrix (can be \-N\-U\-L\-L if decode\-\_\-matrix is already supplied) \\
+\hline
+\mbox{\tt in,out}  & {\em decode\-\_\-matrix} & decoding matrix (can be \-N\-U\-L\-L if not interested) \\
+\hline
+\mbox{\tt in}  & {\em create\-\_\-new} & if 0, use supplied decode\-\_\-matrix; else calculate and update decode\-\_\-matrix \\
+\hline
+\mbox{\tt out}  & {\em data} & decoded data (concat native chunks and unpad) \\
+\hline
+\mbox{\tt out}  & {\em data\-\_\-size} & size of decoded data\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success; -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{fmsr_8h_a58e70b421387bd44f0a320cc1285e25f}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-encode@{fmsr\-\_\-encode}}
+\index{fmsr\-\_\-encode@{fmsr\-\_\-encode}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fmsr\-\_\-encode} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{data, }
+\item[{size\-\_\-t}]{data\-\_\-size, }
+\item[{int}]{create\-\_\-new, }
+\item[{{\bf gf} $\ast$}]{code\-\_\-chunks, }
+\item[{{\bf gf} $\ast$}]{encode\-\_\-matrix}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_a58e70b421387bd44f0a320cc1285e25f}
+
+
+\-Splits file into native chunks and encodes into code chunks. 
+
+\-Note\-: sufficient memory should be allocated for the padded data (using \hyperlink{fmsr_8c_a7e923e0eef4d32dbdfd77de7bf5ddd90}{fmsr\-\_\-padded\-\_\-size()}), which is longer than data\-\_\-size.
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em k,n} & (n,k)-\/\-F\-M\-S\-R \\
+\hline
+\mbox{\tt in}  & {\em data} & original unpadded file to be encoded \\
+\hline
+\mbox{\tt in}  & {\em data\-\_\-size} & unpadded file size \\
+\hline
+\mbox{\tt in}  & {\em create\-\_\-new} & if 0, use supplied encode\-\_\-matrix; else generate and update encode\-\_\-matrix \\
+\hline
+\mbox{\tt out}  & {\em code\-\_\-chunks} & code chunks from encoded data \\
+\hline
+\mbox{\tt in,out}  & {\em encode\-\_\-matrix} & encoding matrix\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+0 on success; -\/1 on failure 
+\end{DoxyReturn}
+\hypertarget{fmsr_8h_a700a138b7b2ddf636da01883ddc103da}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-init@{fmsr\-\_\-init}}
+\index{fmsr\-\_\-init@{fmsr\-\_\-init}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf fmsr\-\_\-init} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_a700a138b7b2ddf636da01883ddc103da}
+
+
+\-Must be called first before using any core functions in the library. 
+
+\hypertarget{fmsr_8h_a311bed5bb7d417632eecd175e23cd448}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-nc@{fmsr\-\_\-nc}}
+\index{fmsr\-\_\-nc@{fmsr\-\_\-nc}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-nc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf fmsr\-\_\-nc} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_a311bed5bb7d417632eecd175e23cd448}
+
+
+\-Returns the number of code chunks. 
+
+\hypertarget{fmsr_8h_a9c8cb79d6a92430ef24d90af13530499}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-nn@{fmsr\-\_\-nn}}
+\index{fmsr\-\_\-nn@{fmsr\-\_\-nn}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-nn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf fmsr\-\_\-nn} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_a9c8cb79d6a92430ef24d90af13530499}
+
+
+\-Returns the number of native chunks. 
+
+\hypertarget{fmsr_8h_af9107c40b552212738f90c59068a2d63}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-nodeid@{fmsr\-\_\-nodeid}}
+\index{fmsr\-\_\-nodeid@{fmsr\-\_\-nodeid}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-nodeid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gf} {\bf fmsr\-\_\-nodeid} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf}}]{index}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_af9107c40b552212738f90c59068a2d63}
+
+
+\-Returns id of the node where the index-\/th chunk resides, or 255 on failure. 
+
+\hypertarget{fmsr_8h_a7e923e0eef4d32dbdfd77de7bf5ddd90}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-padded\-\_\-size@{fmsr\-\_\-padded\-\_\-size}}
+\index{fmsr\-\_\-padded\-\_\-size@{fmsr\-\_\-padded\-\_\-size}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-padded\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t {\bf fmsr\-\_\-padded\-\_\-size} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_a7e923e0eef4d32dbdfd77de7bf5ddd90}
+
+
+\-Returns the size of input file after being padded. 
+
+\hypertarget{fmsr_8h_a523a942fd3f3ca6dcf7be2efc77c4a10}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-regenerate@{fmsr\-\_\-regenerate}}
+\index{fmsr\-\_\-regenerate@{fmsr\-\_\-regenerate}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-regenerate}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf fmsr\-\_\-regenerate} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf} $\ast$}]{repair\-\_\-matrix, }
+\item[{{\bf gf}}]{rows, }
+\item[{{\bf gf}}]{cols, }
+\item[{{\bf gf} $\ast$}]{retrieved\-\_\-chunks, }
+\item[{size\-\_\-t}]{chunk\-\_\-size, }
+\item[{{\bf gf} $\ast$}]{new\-\_\-code\-\_\-chunks}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_a523a942fd3f3ca6dcf7be2efc77c4a10}
+
+
+\-Generates new code\-\_\-chunks from existing code\-\_\-chunks. 
+
+\-This is simply a single matrix multiplication that should be called after \hyperlink{fmsr_8c_aba1540735cbbc0b921f8b0e6df977478}{fmsr\-\_\-repair()}.
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em repair\-\_\-matrix} & repair matrix obtained from \hyperlink{fmsr_8c_aba1540735cbbc0b921f8b0e6df977478}{fmsr\-\_\-repair()} \\
+\hline
+\mbox{\tt in}  & {\em rows,cols} & number of rows and columns in repair\-\_\-matrix \\
+\hline
+\mbox{\tt in}  & {\em retrieved\-\_\-chunks} & all code chunks retrieved for the repair \\
+\hline
+\mbox{\tt in}  & {\em chunk\-\_\-size} & size of each code chunk \\
+\hline
+\mbox{\tt out}  & {\em new\-\_\-code\-\_\-chunks} & all code chunks newly generated by this function \\
+\hline
+\end{DoxyParams}
+\hypertarget{fmsr_8h_aba1540735cbbc0b921f8b0e6df977478}{\index{fmsr.\-h@{fmsr.\-h}!fmsr\-\_\-repair@{fmsr\-\_\-repair}}
+\index{fmsr\-\_\-repair@{fmsr\-\_\-repair}!fmsr.h@{fmsr.\-h}}
+\subsubsection[{fmsr\-\_\-repair}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf fmsr\-\_\-repair} (
+\begin{DoxyParamCaption}
+\item[{{\bf gf}}]{k, }
+\item[{{\bf gf}}]{n, }
+\item[{{\bf gf} $\ast$}]{encode\-\_\-matrix, }
+\item[{{\bf gf} $\ast$}]{erasures, }
+\item[{{\bf gf}}]{num\-\_\-erasures, }
+\item[{{\bf fmsr\-\_\-repair\-\_\-hints} $\ast$}]{hints, }
+\item[{{\bf gf} $\ast$}]{new\-\_\-encode\-\_\-matrix, }
+\item[{{\bf gf} $\ast$}]{repair\-\_\-matrix, }
+\item[{{\bf gf} $\ast$}]{chunks\-\_\-to\-\_\-retrieve, }
+\item[{{\bf gf} $\ast$}]{num\-\_\-chunks\-\_\-to\-\_\-retrieve}
+\end{DoxyParamCaption}
+)}}\label{fmsr_8h_aba1540735cbbc0b921f8b0e6df977478}
+
+
+\-Informs caller of the chunks and encoding matrix used in repair. 
+
+\-Most of the work during repair is done here.
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em k,n} & (n,k)-\/\-F\-M\-S\-R \\
+\hline
+\mbox{\tt in}  & {\em encode\-\_\-matrix} & current encoding matrix before repair \\
+\hline
+\mbox{\tt in}  & {\em erasures} & list of failed node indices \\
+\hline
+\mbox{\tt in}  & {\em num\-\_\-erasures} & number of failed nodes \\
+\hline
+\mbox{\tt in}  & {\em hints} & refer to struct \hyperlink{structfmsr__repair__hints}{fmsr\-\_\-repair\-\_\-hints} \\
+\hline
+\mbox{\tt out}  & {\em new\-\_\-encode\-\_\-matrix} & new encoding matrix after repair \\
+\hline
+\mbox{\tt out}  & {\em repair\-\_\-matrix} & repair matrix (follows order given by chunk list below) \\
+\hline
+\mbox{\tt out}  & {\em chunks\-\_\-to\-\_\-retrieve} & list of code chunks to retrieve from surviving nodes \\
+\hline
+\mbox{\tt out}  & {\em num\-\_\-chunks\-\_\-to\-\_\-retrieve} & number of code chunks to retrieve\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+number of rounds checked on success ($>$0); -\/1 on unsupported parameters; 
+
+0 on failing to generate suitable coefficients 
+\end{DoxyReturn}

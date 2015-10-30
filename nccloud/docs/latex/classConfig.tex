@@ -1,0 +1,83 @@
+\hypertarget{classConfig}{\section{\-Config \-Class \-Reference}
+\label{classConfig}\index{\-Config@{\-Config}}
+}
+
+
+\-Class for dealing with config files.  
+
+
+
+
+{\ttfamily \#include $<$config.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classConfig_a84db68fd51bf99e73437889d873253a6}{read\-\_\-config} (std\-::string \&path)
+\begin{DoxyCompactList}\small\item\em \-Read config from path into coding\-\_\-param and storages\-\_\-param. \end{DoxyCompactList}\item 
+void \hyperlink{classConfig_ae6eed13c1b8c0a456e3b97f1a912c51b}{write\-\_\-config} (std\-::string \&path)
+\begin{DoxyCompactList}\small\item\em \-Write config to path using coding\-\_\-param and storages\-\_\-param. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Data \-Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\-::map$<$ std\-::string, \*
+std\-::string $>$ \hyperlink{classConfig_a713930083fdf5de7c1e3c8ca4997024d}{coding\-\_\-param}
+\begin{DoxyCompactList}\small\item\em \-Stores parameters under the \mbox{[}\hyperlink{classCoding}{\-Coding}\mbox{]} section. \end{DoxyCompactList}\item 
+std\-::vector$<$ std\-::map\*
+$<$ std\-::string, std\-::string $>$ $>$ \hyperlink{classConfig_a14078fe6fc46cb6c5bd1a3c3b9a4eb24}{storages\-\_\-param}
+\begin{DoxyCompactList}\small\item\em \-Stores parameters under the \mbox{[}\hyperlink{classStorage}{\-Storage}\mbox{]} section. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Class for dealing with config files. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classConfig_a84db68fd51bf99e73437889d873253a6}{\index{\-Config@{\-Config}!read\-\_\-config@{read\-\_\-config}}
+\index{read\-\_\-config@{read\-\_\-config}!Config@{\-Config}}
+\subsubsection[{read\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Config\-::read\-\_\-config} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{path}
+\end{DoxyParamCaption}
+)}}\label{classConfig_a84db68fd51bf99e73437889d873253a6}
+
+
+\-Read config from path into coding\-\_\-param and storages\-\_\-param. 
+
+\hypertarget{classConfig_ae6eed13c1b8c0a456e3b97f1a912c51b}{\index{\-Config@{\-Config}!write\-\_\-config@{write\-\_\-config}}
+\index{write\-\_\-config@{write\-\_\-config}!Config@{\-Config}}
+\subsubsection[{write\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Config\-::write\-\_\-config} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{path}
+\end{DoxyParamCaption}
+)}}\label{classConfig_ae6eed13c1b8c0a456e3b97f1a912c51b}
+
+
+\-Write config to path using coding\-\_\-param and storages\-\_\-param. 
+
+
+
+\subsection{\-Field \-Documentation}
+\hypertarget{classConfig_a713930083fdf5de7c1e3c8ca4997024d}{\index{\-Config@{\-Config}!coding\-\_\-param@{coding\-\_\-param}}
+\index{coding\-\_\-param@{coding\-\_\-param}!Config@{\-Config}}
+\subsubsection[{coding\-\_\-param}]{\setlength{\rightskip}{0pt plus 5cm}std\-::map$<$std\-::string,std\-::string$>$ {\bf \-Config\-::coding\-\_\-param}}}\label{classConfig_a713930083fdf5de7c1e3c8ca4997024d}
+
+
+\-Stores parameters under the \mbox{[}\hyperlink{classCoding}{\-Coding}\mbox{]} section. 
+
+\-For example, if there is a line \char`\"{}k=8\char`\"{} under \mbox{[}\hyperlink{classCoding}{\-Coding}\mbox{]}, we have\-: coding\-\_\-param\mbox{[}\char`\"{}k\char`\"{}\mbox{]} = \char`\"{}8\char`\"{} \hypertarget{classConfig_a14078fe6fc46cb6c5bd1a3c3b9a4eb24}{\index{\-Config@{\-Config}!storages\-\_\-param@{storages\-\_\-param}}
+\index{storages\-\_\-param@{storages\-\_\-param}!Config@{\-Config}}
+\subsubsection[{storages\-\_\-param}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ std\-::map$<$std\-::string,std\-::string$>$ $>$ {\bf \-Config\-::storages\-\_\-param}}}\label{classConfig_a14078fe6fc46cb6c5bd1a3c3b9a4eb24}
+
+
+\-Stores parameters under the \mbox{[}\hyperlink{classStorage}{\-Storage}\mbox{]} section. 
+
+\-Parameters are grouped by repositories, separated by an empty line. \-For example, if config is like\-: \mbox{[}\hyperlink{classStorage}{\-Storage}\mbox{]} type = 0
+
+type = 1 then we have\-: storages\-\_\-param\mbox{[}0\mbox{]}\mbox{[}\char`\"{}type\char`\"{}\mbox{]} = \char`\"{}0\char`\"{} storages\-\_\-param\mbox{[}1\mbox{]}\mbox{[}\char`\"{}type\char`\"{}\mbox{]} = \char`\"{}1\char`\"{} 
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{config_8h}{config.\-h}\item 
+\hyperlink{config_8cc}{config.\-cc}\end{DoxyCompactItemize}

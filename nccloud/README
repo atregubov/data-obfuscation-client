@@ -1,0 +1,509 @@
+
+
+  - NCCLOUD README -
+
+
++-------------------+
+| Table of contents |
++-------------------+
+
+  1. What is this ............. [WAT]
+  2. Supported platforms ...... [SUP]
+  3. How to install ........... [INS]
+  4. How to use ............... [USE]
+     4.1 Example .............. [EXP]
+     4.2 Config file format ... [CFG]
+     4.3 Backup file format ... [BAK]
+     4.4 Uploading a file ..... [UPL]
+     4.5 Downloading a file ... [DNL]
+     4.6 Repairing a file ..... [RPR]
+     4.7 Deleting a file ...... [DEL]
+     4.8 Listing repositories . [LST]
+  5. Limitations .............. [LIM]
+  6. Extending NCCloud ........ [EXT]
+     6.1 Overview ............. [OVR]
+     6.2 Coding modules ....... [COD]
+         6.2.1 Replication .... [REP]
+         6.2.2 Reed-Solomon ... [RSC]
+         6.2.3 FMSR ........... [FMS]
+     6.3 Storage modules ...... [STR]
+         6.3.1 Local disk ..... [LOC]
+         6.3.2 Swift .......... [SWI]
+
+
++-----------------------+
+| 1. What is this [WAT] |
++-----------------------+
+
+  NCCloud is a proof-of-concept storage application written in C++, which can be
+  used to backup, restore and repair data on various storage backends.  It aims
+  to be extensible, allowing the support of various coding schemes and storage
+  backends.  It now supports three coding schemes:
+    1. Replication
+    2. Reed-Solomon codes using Jerasure
+    3. Functional minimum-storage regenerating (FMSR) codes using libfmsr
+  It also supports two storage backends:
+    1. Local storage
+    2. OpenStack Swift
+
+  NCCloud is previously implemented in Python and FUSE.  Its previous
+  implementation is described in the following paper:
+    Yuchong Hu, Henry C. H. Chen, Patrick P. C. Lee, and Yang Tang.
+    NCCloud: Applying Network Coding for the Storage Repair in a
+    Cloud-of-Clouds.  USENIX FAST '12.
+
+  More information can be found on the project homepage at:
+  http://ansrlab.cse.cuhk.edu.hk/software/nccloud/
+
+
++------------------------------+
+| 2. Supported platforms [SUP] |
++------------------------------+
+
+  NCCloud is built with the following environment in mind:
+  - Common Linux (e.g., Ubuntu) on small-endian hardware
+  - GCC 4.6+
+  - GNU make
+  - Doxygen (if you plan to build the documentations)
+
+  It might still run on other platforms, but you may need to hack around a bit.
+
+
++-------------------------+
+| 3. How to install [INS] |
++-------------------------+
+
+  There are several prerequisites:
+  - libfmsr (should be bundled with NCCloud and can be found in ../libfmsr/)
+  - Jerasure (should be bundled with NCCloud and can be found in ../Jerasure/)
+  - OpenStack Swift and its CLI (only if you plan to use Swift)
+
+  To build NCCloud, you should use the following commands:
+  - make
+  - make docs (optional)
+
+  "make" first builds the bundled libfmsr and Jerasure.  The libfmsr header and
+  shared library can then be found under ../libfmsr/include/ and ../libfmsr/lib/
+  respectively, while those for Jerasure can be found under ../Jerasure/include/
+  and ../Jerasure/lib/.
+
+  After building libfmsr and Jerasure, NCCloud is built to give two
+  binaries: bin/nccloud and bin/list_repo.  bin/nccloud is the main NCCloud
+  program and bin/list_repo is a program for listing all the files on your
+  storage repositories.  If you have not done so, copy the libfmsr and Jerasure
+  shared libraries to your library path.
+
+  "make docs" uses Doxygen to build the documentations for the NCCloud codes.
+  The documentations can be found under docs/.
+
+
+  Future versions may make use of "autohell", but we stick to hand-crafted
+  Makefiles for now.
+
+
++---------------------+
+| 4. How to use [USE] |
++---------------------+
+
+  NCCloud (bin/nccloud) supports four operations: encode, decode, repair and
+  delete.  They can be invoked as follows (substitute config_file, path_to_file,
+  filename and failed_node_index accordingly).
+    bin/nccloud config_file encode path_to_file_1 ... path_to_file_n
+    bin/nccloud config_file decode filename_1 ... filename_n
+    bin/nccloud config_file repair failed_node_index filename_1 ... filename_n
+    bin/nccloud config_file delete filename_1 ... filename_n
+
+  In addition, there is a separate program for listing repositories
+  (bin/list_repo) that can be invoked as follows.
+    bin/list_repo config_file
+
+
+4.1 Example [EXP]
+-----------------
+
+  We give an example run-through here.  In this example, we try to backup this
+  readme (README) and a config file (template/config_local) using the local
+  directories store/node0 to store/node4 as our storage repositories.  We also
+  need a temporary staging directory store/tmp.  We use (4,2)-FMSR code to
+  encode our files.  Details on each of the steps can be found in later parts of
+  this readme.
+
+  1. Build NCCloud according to Section 3.  If successful, you should have two
+     binaries: bin/nccloud and bin/list_repo.
+
+  2. Create your own config file.  You can use template/config_local for now.
+     Copy the config file to 'config':  cp template/config_local config
+
+  3. Setup your temporary directory and storage repositories.  If you are using
+     template/config_local, then you should have full access to the temporary
+     directory store/tmp and the storage repositories store/node0 to
+     store/node4.  If these directories do not exist, create them.  If you
+     cannot access any of these directories for any reason, use another
+     directory and edit config to reflect the change.
+
+  4. Upload files.  You can try uploading this readme and the config template by
+     using the command:
+       bin/nccloud config encode README template/config_local
+     Your files will be uploaded as README and config_local (flat hierarchy).
+
+  5. Download files.  You can download the uploaded files by:
+       bin/nccloud config decode README config_local
+     The files should then be downloaded to your temporary directory
+     (store/tmp).
+
+  6. Repair files.  We can repair files on node 0 by:
+       bin/nccloud config repair 0 README config_local
+     After the repair, our original config will be backed up as config.old, and
+     config will be updated with the new configuration.  If the repair is
+     successful, you will see that node 0 has been replaced by "store/node4",
+     the spare node in our original config.
+
+  7. List the repositories.  To see what files you have on your repositories,
+     you can feed bin/list_repo your current config:
+       bin/list_repo config
+     You should see chunks and metadata of README and config_local on each of
+     the repositories.
+
+
+4.2 Config file format [CFG]
+----------------------------
+
+  Two example config files are included under template/.
+  template/config_local uses only local storage is used in the above example.
+  template/config shows how we can use OpenStack Swift containers as well.
+
+  A config file is divided into two sections, marked by [Coding] and [Storage].
+  Under each section, there is a list of field=value pairs (no spaces in
+  between).
+
+  The Coding section requires the following fields:
+    k        # the number of nodes required for data reconstruction
+    n        # the total number of nodes storing chunks (excluding spare nodes)
+    w        # Galois field width (use w=8 for GF(2^8))
+    type     # type of coding scheme used: type=0 for FMSR code
+             #                             type=1 for Reed-Solomon code
+             #                             type=2 for replication
+             # Types are specified in Coding::use_coding() in coding.cc.
+    tmpdir   # a staging directory where intermediate files are stored
+               (i.e., this is where 1) encoded chunks and metadata,
+                                    2) retrieved chunks and metadata, and
+                                    3) restored files will go)
+
+
+  The Storage section requires only the type field:
+    type     # type of storage repository: type=0 for local filesystem
+             #                             type=1 for OpenStack Swift
+             # Types are specified in Storage::use_storage() in storage.cc.
+
+  Each type of storage repository requires its own specific parameters. For
+  example, when using a local filesystem as a storage repository (type=0), an
+  additional path field is required:
+    path     # path to a local directory where "uploaded" files are stored
+
+  When using OpenStack Swift (type=1), four additional fields are required:
+    path     # container name
+    authurl  # URL for obtaining an auth token, used by the Swift CLI
+    username # user name for obtaining an auth token, used by the Swift CLI
+    password # key for obtaining an auth token, used by the Swift CLI
+
+
+  Parameters for each storage repository is separated by a newline ('\n').
+  Repositories must be described in exact order:
+    [parameters for node 0]\n
+    \n
+    [parameters for node 1]\n
+    \n
+    ...
+    [parameters for node n-1]\n
+    \n
+    [parameters for node n]\n       # this is the first spare node
+    \n
+
+  When repairing a faulty node, node n will be taken as the new node.
+
+
+4.3 Backup file format [BAK]
+----------------------------
+
+  Files are backed up to a flat hierarchy (i.e., we care about only the
+  filename).  Files are encoded to give a file metadata and file chunks.  When
+  encoding a file named f, the metadata is named as f.meta, while the chunks are
+  called f.chunk_, with _ replaced with the chunk's index (starts from 0).  One
+  copy of the metadata is uploaded to each repository, along with the chunks
+  belonging to that repository.
+
+  Usually the metadata contains only the chunk size, in ASCII.  It is the case
+  for both Reed-Solomon codes and replication.  In the case of FMSR codes, the
+  metadata format is different.  Assuming we are using (n,k)-FMSR code, the
+  metadata format is as follows.
+    From the 0-th byte: [Encoding matrix with n(n-k) x k(n-k) coefficients]
+    From the ( n(n-k) x k(n-k) )-th byte: [Chunk size in ASCII]
+    Last four bytes: [Repair hints in ASCII]
+                     The repair hints start with three bytes indicating the
+                     previously repaired node (prefixed with zeroes if less than
+                     100).  Then a final byte indicating the chunk selected in
+                     the previous repair ('0' or '1') follows.
+
+
+4.4 Uploading a file [UPL]
+--------------------------
+
+  usage: bin/nccloud config_file encode path_to_file_1 ... path_to_file_n
+
+  This will first encode your files using the coding scheme specified in
+  config_file, to give metadata and chunks named according to the original
+  filenames.  For example, if path_to_file_1 is "template/config", the following
+  files will be created in the temporary directory:
+    config.meta config.chunk*
+  The number of chunks is determined by the coding scheme specified.
+
+  The metadata will then be replicated to each storage node.  The chunks will be
+  uploaded to each of their corresponding node.
+
+
+4.5 Downloading a file [DNL]
+----------------------------
+
+  usage: bin/nccloud config_file decode filename_1 ... filename_n
+
+  For each file, this will first download the file metadata from the first
+  accessible node to the temporary directory.  Also, this will download all
+  chunks from the first k accessible nodes (k is specified by the coding
+  scheme).  These chunks are decoded to give the original file under the
+  temporary directory.
+
+
+4.6 Repairing a file [RPR]
+--------------------------
+
+  usage: bin/nccloud config_file repair failed_node_# filename_1 ... filename_n
+
+  In this case, we are trying to repair a failed node, its index specified as
+  "failed_node_#" (indices start from 0, and follows the order of the storage
+  nodes given in the config_file).
+
+  For each file, this will first download the file metadata from the first
+  accessible node to the temporary directory.  Depending on the metadata and
+  coding scheme specified, this will retrieve chunks from surviving nodes that
+  are needed to generate new chunks for replacing the failed node.  The chunks
+  are generated under the temporary directory, and uploaded to the first spare
+  node specified in the config file (node n).  Metadata on the nodes are updated
+  if needed.
+
+  After the repair, suppose your config_file is called "config", you will see a
+  newly created file called "config.old".  This is a backup of your original
+  config file (with the faulty node).  Your config_file "config" will be updated
+  to reflect the new working parameters.
+
+
+4.7 Deleting a file [DEL]
+-------------------------
+
+  usage: bin/nccloud config_file delete filename_1 ... filename_n
+
+  Metadata and chunks for each of the file will be removed from all nodes.
+
+
+4.8 Listing repositories [LST]
+------------------------------
+
+  usage: bin/list_repo config_file
+
+  All files on all nodes will be printed (even those that has nothing to do with
+  NCCloud).
+
+
++----------------------+
+| 5. Limitations [LIM] |
++----------------------+
+
+  Other than the platform recommendations in Section 2 of this readme and also
+  the limitations inherent in all its prerequisites, we list some other known
+  limitations of NCCloud here.
+  - The backup hierarchy is flat (i.e., we look only at filenames), so you
+    should not include files like "Makefile" and "test/Makefile" together.
+  - Only single-node repairs are supported.
+  - Each operation uses the same coding schemes and parameters for all files.
+    To operate on files coded differently you have to invoke NCCloud multiple
+    times.
+  - We store everything in the memory, so be careful not to encode files that
+    are too large.
+
+  This is only a proof-of-concept prototype written as an exercise and released
+  for academic purpose.  Stress test at your own risk!
+
+
++----------------------------+
+| 6. Extending NCCloud [EXT] |
++----------------------------+
+
+6.1 Overview [OVR]
+------------------
+
+  The structure of NCCloud is roughly as follows.
+
+    User invokes bin/nccloud
+               ||
+               \/
+          ------------   parses config file   -----------
+         |            | <==================> | config.cc |
+         |            |                       -----------
+         |            |
+         |            |  instantiates objects for
+         | nccloud.cc |  the coding scheme and        -----------
+         |            |  storage backends specified  | coding.cc |
+         |            | <==========================>  ------------
+         |            |                              | storage.cc |
+         |            |                               ------------
+          ------------
+               || invokes file operations
+               || requested by the user
+               \/
+          ------------   calls the appropriate
+         |            |  encode/decode functions     ----------------
+         |            | <=========================> | codings/???.cc |
+         |            |                              ----------------
+         | fileop.cc  |
+         |            |  calls the appropriate
+         |            |  upload/download functions   -----------------
+         |            | <=========================> | storages/???.cc |
+          ------------                               -----------------
+
+
+  The file operations are carried out in a simple pipelined manner.  There is a
+  master coding thread for carrying out coding operations (e.g., encode/decode)
+  and a master storage thread for carryng out file transfers to and from the
+  repositories.  The intention of this is to allow coding operations to run
+  during lengthy file transfers (I/O bound). For example, during file encode and
+  upload (ideally):
+
+                        |E1|E2|E3|
+    With pipelining:    --------------------------------------> time
+                           |   T1   |   T2   |   T3   |
+
+
+                        |E1|   T1   |E2|   T2   |E3|   T3   |
+    Without pipelining: --------------------------------------> time
+
+       E1, E2, E3:  Encoding files 1, 2 and 3 respectively
+       T1, T2, T3:  Uploading files 1, 2 and 3 respectively
+
+  This could improve performance when transferring files over a slow network,
+  but has minimal impact when using local storage as storage backends.  The
+  pipelining model could be further extended in the future (e.g., spawning
+  multiple storage threads to speed up file transfer).
+
+
+  In the remaining parts of this readme, we will explain how to add a new coding
+  scheme or storage backend support to NCCloud.
+
+
+6.2 Coding modules [COD]
+------------------------
+
+  If you want to add your own coding scheme, you can follow these procedures:
+
+  1. Implement it as a subclass of Coding (from coding.h).  You have to
+     implement all the purely virtual functions according to their
+     specifications in coding.h.  You can also override the protected metadata
+     and chunk handling methods if your coding scheme requires special handling.
+
+     You can use the three existing coding modules (under codings/) as examples.
+
+  2. Add your new coding scheme to Coding::use_coding() in coding.cc.  This will
+     allow you to specify your coding scheme in the config.  Remember to include
+     the appropriate headers.
+
+  3. You can now specify your new coding scheme through the "type" field under
+     the [Coding] section in the config file.
+
+  In the following three sections we will briefly comment on each of the three
+  existing coding modules.
+
+
+[ 6.2.1 Replication [REP] ]
+
+  Associated files:  codings/replication.{cc,h}
+  Class:  Replication
+  Parameters:  n
+  Ignored parameters:  k, w
+
+  This is straightforward replication.  The input file f is copied n times to
+  give f.chunk0, ... , f.chunkn.  Each node will hold exactly one chunk.
+
+  k is implied to be 1, and "decoding" is done by downloading the chunk from the
+  first accessible node (in the order given in the config file).
+
+
+[ 6.2.2 Reed-Solomon [RSC] ]
+
+  Associated files:  codings/rs.{cc,h}
+  Class:  RSCode
+  Parameters:  n, k, w
+
+  This uses Jerasure.  The input file f is encoded using a Vandermonde matrix to
+  give (n-k) parity chunks f.chunkk , ... , f.chunkn.  The file f is split into
+  k chunks f.chunk0 , ... , f.chunk{k-1}.  Each node will hold exactly one
+  chunk.
+
+  Decoding is done by decoding the k chunks downloaded from the first k
+  accessible nodes.  Repairs are simply decodes (if data chunks are missing)
+  followed by encodes (if code chunks are missing).
+
+
+[ 6.2.3 FMSR [FMS] ]
+
+  Associated files:  codings/fmsr.{cc,h}
+  Class:  FMSRCode
+  Parameters:  n, k, w
+
+  This uses libfmsr.  Currently, FMSR codes are supported only for k=n-2,
+  4<=n<=16 and w=8.  The input file f is encoded to give 2n code chunks
+  f.chunk0, ... , f.chunk{2n}.  Each node will hold exactly two chunks.
+
+  Decoding is done by decoding the 2k chunks downloaded from the first k
+  accessible nodes (tolerates up to two failed nodes).  Despite tolerating two
+  failed nodes in decode, only single-node failures are supported in repair,
+  which will download exactly one chunk each from the remaining n-1 accessible
+  nodes.  To repair two-node failures, one way is to decode and then encode the
+  file again.
+
+
+6.3 Storage modules [STR]
+-------------------------
+
+  If you want to add your own storage backend, you can follow these procedures:
+
+  1. Implement it as a subclass of Storage (from storage.h).  You have to
+     implement all the purely virtual functions according to their
+     specifications in storage.h.
+
+     You can use the two existing storage modules (under storages/) as examples.
+
+  2. Add your new storage backend to Storage::use_storage() in storage.cc.  This
+     will allow you to specify your storage backend in the config.  Remember to
+     include the appropriate headers.
+
+  3. You can now specify your new storage backend through the "type" field under
+     the [Storage] section in the config file.
+
+  In the following two sections we will briefly comment on each of the two
+  existing storage backends.
+
+
+[ 6.3.1 Local disk [LOC] ]
+
+  Associated files:  storages/local.{cc,h}
+  Class:  LocalStorage
+
+
+[ 6.3.2 Swift [SWI] ]
+
+  Associated files:  storages/swift.{cc,h}
+  Class:  SwiftStorage
+
+  For convenience, this uses system() to invoke the Swift CLI that should be
+  installed with OpenStack Swift.  All the file transfers are done through the
+  Swift CLI.  If needed, you can modify how the Swift CLI is invoked in
+  SwiftStorage::init() and SwiftStorage::run_cmd().
+

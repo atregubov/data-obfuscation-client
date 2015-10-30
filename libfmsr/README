@@ -1,0 +1,145 @@
+
+
+  - LIBFMSR README -
+
+
++-------------------+
+| Table of contents |
++-------------------+
+
+  1. What is this .......... [WAT]
+  2. Supported platforms ... [SUP]
+  3. How to install ........ [INS]
+  4. How to use ............ [USE]
+
+
++-----------------------+
+| 1. What is this [WAT] |
++-----------------------+
+
+  libfmsr is a C library implementing the functional minimum-storage
+  regenerating (FMSR) codes as described in the following two papers:
+
+  1. Yuchong Hu, Henry C. H. Chen, Patrick P. C. Lee, and Yang Tang.
+  NCCloud: Applying Network Coding for the Storage Repair in a
+  Cloud-of-Clouds.  USENIX FAST '12.
+
+  2. Yuchong Hu, Patrick P. C. Lee, Kenneth W. Shum.
+  Analysis and Construction of Functional Regenerating Codes with Uncoded
+  Repair for Distributed Storage Systems.  IEEE INFOCOM '13.
+
+
+  More information can be found on the project homepage at:
+  http://ansrlab.cse.cuhk.edu.hk/software/nccloud/
+
+
++------------------------------+
+| 2. Supported platforms [SUP] |
++------------------------------+
+
+  libfmsr is built with the following environment in mind:
+  - Common Linux (e.g., Ubuntu) on small-endian hardware
+  - GCC 4.6+
+  - GNU make
+  - Doxygen (if you plan to build the documentations)
+
+  It might still run on other platforms, but you may need to hack around a bit.
+
+
++-------------------------+
+| 3. How to install [INS] |
++-------------------------+
+
+  There are several tunable parameters in src/fmsr.c that you could change
+  before compiling (see Lines 51--71 of src/fmsr.c).
+
+
+  To build the library, you should use the following commands:
+  - make
+  - make test (optional)
+  - make docs (optional)
+
+  "make" builds the library source codes under src/ to give a shared library
+  under lib/ and the essential header file "fmsr.h" under include/.
+
+  "make test" builds and runs the test cases under src/test/.  Note that the
+  tests aim to check the correctness of the built libfmsr, and the timing
+  information provides only a rough intuition on the library's performance.
+
+  "make docs" uses Doxygen to build the documentations for the libfmsr codes.
+  The documentations can be found under src/docs/
+
+
+  Future versions may make use of "autohell", but we stick to hand-crafted
+  Makefiles for now.
+
+
++---------------------+
+| 4. How to use [USE] |
++---------------------+
+
+  COMPILING AND LINKING.  When compiling your application with libfmsr, remember
+  to add in the include path where fmsr.h can be found (if it is not the
+  default).  When linking, remember your library path (if not the default) and
+  the -lfmsr flag.  Also, make sure the shared library is in your library path.
+
+  FUNCTIONS TO CALL.  The libfmsr functions that you should call from your own
+  application can all be found in fmsr.h, so refer to fmsr.h for details.
+  fmsr.h should be the only header file that you need to include from your own
+  application.  It is roughly divided into three parts.
+
+      1. INITIALIZATION.  This part consists of only the function fmsr_init().
+      This function must be called before you intend to do any encoding or
+      decoding stuff.
+
+      2. HELPER FUNCTIONS.  This part consists of functions that are intended to
+      be "informative".  No actual encoding or decoding is done here.
+
+      3. CORE FUNCTIONS.  This part consists of the "core" computations for
+      encoding, decoding and repairing a file.
+
+  Basically, you would stick to the following flow.
+
+      ENCODING A FILE.
+      1. Call fmsr_init().
+      2. Allocate your buffers using the helper functions (if you are not sure
+         about how much memory to allocate, see "alloc_encode_matrix",
+         "alloc_native_chunks" and "alloc_code_chunks" in fmsr.h for examples).
+      3. Call fmsr_encode() with your properly allocated buffers.
+
+      DECODING A FILE.
+      1. Call fmsr_init().
+      2. Allocate your buffers using the helper functions (if you are not sure
+         about how much memory to allocate, see "alloc_encode_matrix",
+         "alloc_decode_matrix", "alloc_native_chunks",
+         "alloc_decode_chunk_indices" and "alloc_decode_chunks" in fmsr.h for
+         examples).
+      3. Call fmsr_encode() with your properly allocated buffers.
+
+      REPAIRING A FILE.
+      1. Call fmsr_init().
+      2. Allocate your buffers using the helper functions (if you are not sure
+         about how much memory to allocate, see "alloc_encode_matrix",
+         "alloc_repair_matrix", "alloc_chunks_to_retrieve",
+         "alloc_retrieved_chunks" and "alloc_new_code_chunks" in fmsr.h for
+         examples).
+      3. Call fmsr_repair() with your properly allocated buffers.
+      4. Call fmsr_regenarate(), using results obtained from fmsr_repair().
+
+  EXAMPLES.  For examples on how to use libfmsr, you may refer to the C++
+  version of NCCloud found on the project homepage:
+      http://ansrlab.cse.cuhk.edu.hk/software/nccloud/
+  You may also refer to the (slightly obscured) test cases under src/test/
+  (e.g., src/test/fmsr-2.c).  Note that the test cases are linked directly to
+  libfmsr instead of using a shared library.
+
+  LIMITATIONS.  Other than the platform recommendations in Section 2 of this
+  readme, we list some other known limitations of libfmsr here.
+  - Our FMSR code supports k=n-2.  Also, it should work fine when 4<=n<=16.
+  - We support only single-node repairs.
+  - We store everything in the memory allocated by the user, so be careful not
+    to encode files that are too large.
+
+  FINAL WORDS.  This is only a proof-of-concept prototype written as an exercise
+  and released for academic purpose.  Stress test at your own risk!
+

@@ -1,0 +1,169 @@
+\hypertarget{classFileOp}{\section{\-File\-Op \-Class \-Reference}
+\label{classFileOp}\index{\-File\-Op@{\-File\-Op}}
+}
+
+
+\-Singleton class for file operations.  
+
+
+
+
+{\ttfamily \#include $<$fileop.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classFileOp_aec4f4964e1c0af0942e1e924849a94aa}{wait} (void)
+\begin{DoxyCompactList}\small\item\em \-Wait for all storage/coding jobs to finish. \end{DoxyCompactList}\item 
+void \hyperlink{classFileOp_a448496e69f72e5e204701ffc56e61f35}{encode\-\_\-file} (std\-::string \&path, \hyperlink{classCoding}{\-Coding} $\ast$coding, std\-::vector$<$ \hyperlink{classStorage}{\-Storage} $\ast$ $>$ \&storages, std\-::string \&tmpdir)
+\begin{DoxyCompactList}\small\item\em \-Encode and upload a file. \end{DoxyCompactList}\item 
+void \hyperlink{classFileOp_af452788b77c92ffea73a157c13e8232d}{decode\-\_\-file} (std\-::string \&filename, \hyperlink{classCoding}{\-Coding} $\ast$coding, std\-::vector$<$ \hyperlink{classStorage}{\-Storage} $\ast$ $>$ \&storages, std\-::string \&tmpdir)
+\begin{DoxyCompactList}\small\item\em \-Download and decode a file. \end{DoxyCompactList}\item 
+void \hyperlink{classFileOp_aabcce0c013e18538f5c978774ad81af5}{repair\-\_\-file} (std\-::string \&filename, \hyperlink{classCoding}{\-Coding} $\ast$coding, std\-::vector$<$ \hyperlink{classStorage}{\-Storage} $\ast$ $>$ \&storages, std\-::vector$<$ int $>$ \&chunks\-\_\-to\-\_\-retrieve, int faulty\-\_\-node, std\-::string \&tmpdir)
+\begin{DoxyCompactList}\small\item\em \-Repair a file. \end{DoxyCompactList}\item 
+void \hyperlink{classFileOp_ab26b8a55c4d193a377627f1c42e8bd11}{delete\-\_\-file} (std\-::string \&filename, \hyperlink{classCoding}{\-Coding} $\ast$coding, std\-::vector$<$ \hyperlink{classStorage}{\-Storage} $\ast$ $>$ \&storages)
+\begin{DoxyCompactList}\small\item\em \-Delete a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classFileOp}{\-File\-Op} $\ast$ \hyperlink{classFileOp_adf181dd6ecd7c9bb40d47cfe31f5343f}{instance} (void)
+\begin{DoxyCompactList}\small\item\em \-Returns a singleton instance of \hyperlink{classFileOp}{\-File\-Op}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Singleton class for file operations. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classFileOp_af452788b77c92ffea73a157c13e8232d}{\index{\-File\-Op@{\-File\-Op}!decode\-\_\-file@{decode\-\_\-file}}
+\index{decode\-\_\-file@{decode\-\_\-file}!FileOp@{\-File\-Op}}
+\subsubsection[{decode\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-File\-Op\-::decode\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{filename, }
+\item[{{\bf \-Coding} $\ast$}]{coding, }
+\item[{std\-::vector$<$ {\bf \-Storage} $\ast$ $>$ \&}]{storages, }
+\item[{std\-::string \&}]{tmpdir}
+\end{DoxyParamCaption}
+)}}\label{classFileOp_af452788b77c92ffea73a157c13e8232d}
+
+
+\-Download and decode a file. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em filename} & name of file to download \\
+\hline
+\mbox{\tt in}  & {\em coding} & \hyperlink{classCoding}{\-Coding} instance describing the coding scheme used \\
+\hline
+\mbox{\tt in}  & {\em storages} & \hyperlink{classStorage}{\-Storage} instances describing the repositories \\
+\hline
+\mbox{\tt in}  & {\em tmpdir} & path to temporary directory \\
+\hline
+\end{DoxyParams}
+\hypertarget{classFileOp_ab26b8a55c4d193a377627f1c42e8bd11}{\index{\-File\-Op@{\-File\-Op}!delete\-\_\-file@{delete\-\_\-file}}
+\index{delete\-\_\-file@{delete\-\_\-file}!FileOp@{\-File\-Op}}
+\subsubsection[{delete\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-File\-Op\-::delete\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{filename, }
+\item[{{\bf \-Coding} $\ast$}]{coding, }
+\item[{std\-::vector$<$ {\bf \-Storage} $\ast$ $>$ \&}]{storages}
+\end{DoxyParamCaption}
+)}}\label{classFileOp_ab26b8a55c4d193a377627f1c42e8bd11}
+
+
+\-Delete a file. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em filename} & name of file to delete \\
+\hline
+\mbox{\tt in}  & {\em coding} & \hyperlink{classCoding}{\-Coding} instance describing the coding scheme used \\
+\hline
+\mbox{\tt in}  & {\em storages} & \hyperlink{classStorage}{\-Storage} instances describing the repositories \\
+\hline
+\end{DoxyParams}
+\hypertarget{classFileOp_a448496e69f72e5e204701ffc56e61f35}{\index{\-File\-Op@{\-File\-Op}!encode\-\_\-file@{encode\-\_\-file}}
+\index{encode\-\_\-file@{encode\-\_\-file}!FileOp@{\-File\-Op}}
+\subsubsection[{encode\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-File\-Op\-::encode\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{path, }
+\item[{{\bf \-Coding} $\ast$}]{coding, }
+\item[{std\-::vector$<$ {\bf \-Storage} $\ast$ $>$ \&}]{storages, }
+\item[{std\-::string \&}]{tmpdir}
+\end{DoxyParamCaption}
+)}}\label{classFileOp_a448496e69f72e5e204701ffc56e61f35}
+
+
+\-Encode and upload a file. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em path} & local path of file to upload \\
+\hline
+\mbox{\tt in}  & {\em coding} & \hyperlink{classCoding}{\-Coding} instance describing the coding scheme used \\
+\hline
+\mbox{\tt in}  & {\em storages} & \hyperlink{classStorage}{\-Storage} instances describing the repositories \\
+\hline
+\mbox{\tt in}  & {\em tmpdir} & path to temporary directory \\
+\hline
+\end{DoxyParams}
+\hypertarget{classFileOp_adf181dd6ecd7c9bb40d47cfe31f5343f}{\index{\-File\-Op@{\-File\-Op}!instance@{instance}}
+\index{instance@{instance}!FileOp@{\-File\-Op}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-File\-Op} $\ast$ {\bf \-File\-Op\-::instance} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classFileOp_adf181dd6ecd7c9bb40d47cfe31f5343f}
+
+
+\-Returns a singleton instance of \hyperlink{classFileOp}{\-File\-Op}. 
+
+\hypertarget{classFileOp_aabcce0c013e18538f5c978774ad81af5}{\index{\-File\-Op@{\-File\-Op}!repair\-\_\-file@{repair\-\_\-file}}
+\index{repair\-\_\-file@{repair\-\_\-file}!FileOp@{\-File\-Op}}
+\subsubsection[{repair\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-File\-Op\-::repair\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{std\-::string \&}]{filename, }
+\item[{{\bf \-Coding} $\ast$}]{coding, }
+\item[{std\-::vector$<$ {\bf \-Storage} $\ast$ $>$ \&}]{storages, }
+\item[{std\-::vector$<$ int $>$ \&}]{chunks\-\_\-to\-\_\-retrieve, }
+\item[{int}]{faulty\-\_\-node, }
+\item[{std\-::string \&}]{tmpdir}
+\end{DoxyParamCaption}
+)}}\label{classFileOp_aabcce0c013e18538f5c978774ad81af5}
+
+
+\-Repair a file. 
+
+
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em filename} & name of file to repair \\
+\hline
+\mbox{\tt in}  & {\em coding} & \hyperlink{classCoding}{\-Coding} instance describing the coding scheme used \\
+\hline
+\mbox{\tt in}  & {\em storages} & \hyperlink{classStorage}{\-Storage} instances describing the repositories \\
+\hline
+\mbox{\tt in}  & {\em chunks\-\_\-to\-\_\-retrieve} & indices of chunks to be retrieved \\
+\hline
+\mbox{\tt in}  & {\em faulty\-\_\-node} & node to repair \\
+\hline
+\mbox{\tt in}  & {\em tmpdir} & path to temporary directory \\
+\hline
+\end{DoxyParams}
+\hypertarget{classFileOp_aec4f4964e1c0af0942e1e924849a94aa}{\index{\-File\-Op@{\-File\-Op}!wait@{wait}}
+\index{wait@{wait}!FileOp@{\-File\-Op}}
+\subsubsection[{wait}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-File\-Op\-::wait} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classFileOp_aec4f4964e1c0af0942e1e924849a94aa}
+
+
+\-Wait for all storage/coding jobs to finish. 
+
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{fileop_8h}{fileop.\-h}\item 
+\hyperlink{fileop_8cc}{fileop.\-cc}\end{DoxyCompactItemize}
