@@ -1,6 +1,7 @@
 [Coding]
 k=2
 n=4
+t=8
 tmpdir=store/tmp
 type=3
 w=8

@@ -49,7 +49,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 using namespace std;
 
 
-Coding *Coding::use_coding(int type, int k, int n, int w)
+Coding *Coding::use_coding(int type, int k, int n, int t, int w)
 {
   switch (type) {
     case 0:
@@ -59,7 +59,7 @@ Coding *Coding::use_coding(int type, int k, int n, int w)
     case 2:
       return new Replication(k, n, w);
 	 case 3:
-      return new OFMSRCode(k, n, w);
+      return new OFMSRCode(k, n, t, w);
     default:
       return new FMSRCode(k, n, w);
   }

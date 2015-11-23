@@ -53,8 +53,8 @@ using namespace std;
 /*  ----------------  */
 /* | Public methods | */
 /*  ----------------  */
-OFMSRCode::OFMSRCode(int k, int n, int w):
-    k(k), n(n), nn(fmsr_nn(k, n)), nc(fmsr_nc(k, n)),
+OFMSRCode::OFMSRCode(int k, int n, int t, int w):
+    k(k), n(n), t(t), nn(fmsr_nn(k, n)), nc(fmsr_nc(k, n)),
     encode_matrix(NULL), decode_matrix(NULL), repair_matrix(NULL),
     gf_retrieved_chunk_indices(NULL), gf_repair_chunk_indices(NULL),
     hints((fmsr_repair_hints){255, 0})

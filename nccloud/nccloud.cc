@@ -83,7 +83,7 @@ int main(int argc, char **argv)
   config.read_config(config_path);
 
   // init coding based on config
-  vector<string> required_coding_param {"type", "k", "n", "w", "tmpdir"};
+  vector<string> required_coding_param {"type", "k", "n", "t", "w", "tmpdir"};
   for (auto &it : required_coding_param) {
     if (config.coding_param.count(it) != 1) {
       cerr << "[Coding] " << it << " field missing." << endl;
@@ -93,9 +93,10 @@ int main(int argc, char **argv)
   int coding_type = atoi(config.coding_param["type"].c_str());
   int k = atoi(config.coding_param["k"].c_str());
   int n = atoi(config.coding_param["n"].c_str());
+  int t = atoi(config.coding_param["t"].c_str());
   int w = atoi(config.coding_param["w"].c_str());
   string tmpdir = config.coding_param["tmpdir"];
-  Coding *coding = Coding::use_coding(coding_type, k, n, w);
+  Coding *coding = Coding::use_coding(coding_type, k, n, t, w);
   cout << "Coding type: " << coding_type << endl;
 
   // init storages based on config

@@ -89,7 +89,7 @@ public:
    *  @param[in]    n total number of nodes
    *  @param[in]    w field width, w=8 if we use GF(2^8)
    *  @return an instance of an appropriate subclass of Coding */
-  static Coding *use_coding(int type, int k, int n, int w);
+  static Coding *use_coding(int type, int k, int n, int t, int w);
 
 
   /** Encode a file at srcdir/filename into chunks stored under dstdir.

@@ -60,10 +60,10 @@ typedef unsigned char gf;
 #endif
 
 
-/** Coding module class for functional minimum-storage regenerating (FMSR) code with obfuscation. */
+/** Coding module class for obfuscated functional minimum-storage regenerating (OFMSR) code with obfuscation. */
 class OFMSRCode: public Coding
 {
-  gf k, n, nn, nc;  // (n,k)-FMSR code with nn native chunks and nc code chunks
+  gf k, n, t, nn, nc;  // (n,k)-FMSR code with nn native chunks and nc code chunks
   gf *encode_matrix, *decode_matrix, *repair_matrix;
   gf *gf_retrieved_chunk_indices;  // chunks retrieved during download or repair
   gf *gf_repair_chunk_indices;     // chunks to repair
@@ -73,7 +73,7 @@ class OFMSRCode: public Coding
   void write_metadata(std::string &path, size_t chunksize);
 
 public:
-  OFMSRCode(int k, int n, int w);
+  OFMSRCode(int k, int n, int t, int w);
   ~OFMSRCode();
   int encode_file(std::string &dstdir, std::string &srcdir, std::string &filename);
   int decode_file(std::string &dst, std::string &srcdir, std::string &filename,
