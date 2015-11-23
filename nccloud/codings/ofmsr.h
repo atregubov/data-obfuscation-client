@@ -89,6 +89,8 @@ public:
   int chunks_per_node(void);
   int chunks_on_node(int node, std::vector<int> &chunk_indices);
   void reset(void);
+  void write_dummy_chunks(std::string &path, size_t chunksize, std::vector<int> &chunk_indices);
+
 };
 
 #endif 

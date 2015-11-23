@@ -47,6 +47,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "../common.h"
 #include "ofmsr.h"
 
+#define DEBUG_MODE
+
+#ifdef DEBUG_MODE
+#define INFO(msg) cout << "INFO: " << msg << "\n";
+#else
+#define INFO(msg) 
+#endif
+
+
 using namespace std;
 
 
@@ -117,6 +126,17 @@ int OFMSRCode::encode_file(string &dstdir, string &srcdir, string &filename)
     chunk_indices[i] = i;
   }
   write_chunks(dst, chunksize, chunk_indices, (char *)code_chunks);
+	
+	// dummy chunks  
+	// FIXME:
+  vector<int> dummy_chunk_indices(3);
+  for (unsigned int i=nc; i<nc+(unsigned int)3; ++i) {
+  	INFO("index i = " << i);
+    dummy_chunk_indices[i - nc] = i;
+    INFO("dummy_chunk_indices[i - nc] = " << dummy_chunk_indices[i - nc]);
+  }
+  write_dummy_chunks(dst, chunksize, dummy_chunk_indices);
+  
   delete[] code_chunks;
 
   return 0;
@@ -360,7 +380,9 @@ void OFMSRCode::read_metadata(string &path, size_t &chunksize)
 
 void OFMSRCode::write_metadata(string &path, size_t chunksize)
 {
-  // write encoding matrix, chunk size and repair hints to metadata
+	//TODO: change path to local/path
+	
+	// write encoding matrix, chunk size and repair hints to metadata
   string meta_path = path + ".meta";
   FILE *metafile = fopen(meta_path.c_str(), "wb");
   if (metafile == NULL) {
@@ -380,5 +402,23 @@ void OFMSRCode::write_metadata(string &path, size_t chunksize)
     show_file_error("fwrite", meta_path.c_str(), metafile);
   }
   fclose(metafile);
+}
+
+
+void OFMSRCode::write_dummy_chunks(string &path, size_t chunksize,
+                          vector<int> &chunk_indices)
+{
+  // write chunks in the buffer "chunks" to their corresponding destinations
+  string chunk_partial_path = path + ".chunk";
+  for (unsigned int i=0; i<chunk_indices.size(); ++i) {
+  	char buffer[chunksize];
+		for (size_t i = 0; i < chunksize; i++)
+		{
+			buffer[i] = (char) (rand() % 256);
+		}
+    string chunk_path = chunk_partial_path + to_string(chunk_indices[i]);
+    INFO("write dummy chunks: string chunk_path = " << chunk_path << ", i = " << i << ", chunksize = " << chunksize << ", index = " << chunk_indices[i] );
+    write_file(chunk_path, buffer, chunksize);
+  }
 }
 
