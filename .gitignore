@@ -20,3 +20,5 @@ Jerasure/include/
 Jerasure/lib/
 libfmsr/lib/
 nccloud/bin/
+nccloud/store/
+

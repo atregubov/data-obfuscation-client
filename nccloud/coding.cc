@@ -41,6 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "coding.h"
 #include "codings/fmsr.h"
+#include "codings/ofmsr.h"
 #include "codings/replication.h"
 #include "codings/rs.h"
 #include "common.h"
@@ -57,6 +58,8 @@ Coding *Coding::use_coding(int type, int k, int n, int w)
       return new RSCode(k, n, w);
     case 2:
       return new Replication(k, n, w);
+	 case 3:
+      return new OFMSRCode(k, n, w);
     default:
       return new FMSRCode(k, n, w);
   }

@@ -3,7 +3,7 @@ CXXFLAGS=-O3 -std=c++0x -Wall -I../libfmsr/include -I../Jerasure/include
 LDFLAGS=-O3 -Wall -L../libfmsr/lib -lfmsr -L../Jerasure/lib -lJerasure -lpthread
 
 SRCS=nccloud.cc config.cc fileop.cc coding.cc storage.cc \
-     codings/fmsr.cc codings/replication.cc codings/rs.cc \
+     codings/fmsr.cc codings/ofmsr.cc codings/replication.cc codings/rs.cc \
      storages/local.cc storages/swift.cc
 OBJS=$(SRCS:.cc=.o)
 

@@ -12,8 +12,6 @@
 
 #define CHECK_ERROR(res, call, fn) if (res != 0) { cout << "ERROR: " << fn << " returned " << res << " in " << call << "\n"; exit(res);};
 
-
-
 using namespace std;
 
 /* creates a randomly generated file of a specified size*/
@@ -33,7 +31,7 @@ int main()
 
 int generate_dummy_file(int f_size, string f_name, string path)
 {
-	INFO("generate_dummy_file: size " << f_size << ", name " << f_name << ", path " << path);
+	INFO("Generate_dummy_file: size " << f_size << ", name " << f_name << ", path " << path);
 	char buffer[f_size];
 	for (int i = 0; i < f_size; i++)
 	{

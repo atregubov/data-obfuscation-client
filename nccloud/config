@@ -2,7 +2,7 @@
 k=2
 n=4
 tmpdir=store/tmp
-type=0
+type=3
 w=8
 
 [Storage]
