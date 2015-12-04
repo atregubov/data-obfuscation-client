@@ -110,7 +110,7 @@ int OFMSRCode::encode_file(string &dstdir, string &srcdir, string &filename)
   int result = fmsr_encode(k, n, native_chunks, filesize, create_new,
                            code_chunks, encode_matrix);
   if (result == -1) {
-    print_error(stringstream() << "FMSR not supported for k=" << k
+    print_error(stringstream() << "FMSR not supported for k= " << k
                                << " and n=" << n << endl);
     return -1;
   }
@@ -230,7 +230,7 @@ int OFMSRCode::repair_file_preprocess(string &srcdir, string &filename,
                            new_encode_matrix, repair_matrix,
                            gf_retrieved_chunk_indices, &num_chunks_to_retrieve);
   if (result == -1) {
-    print_error(stringstream() << "Invalid parameters passed to fmsr_repair()" << endl);
+    print_error(stringstream() << " Invalid parameters passed to fmsr_repair()" << endl);
     return -1;
   } else if (result == 0) {
     print_error(stringstream() << "Failed to regenerate.  "
