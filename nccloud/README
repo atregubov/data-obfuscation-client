@@ -426,7 +426,7 @@
   Associated files:  codings/replication.{cc,h}
   Class:  Replication
   Parameters:  n
-  Ignored parameters:  k, w
+  Ignored parameters:  k, w, l
 
   This is straightforward replication.  The input file f is copied n times to
   give f.chunk0, ... , f.chunkn.  Each node will hold exactly one chunk.
