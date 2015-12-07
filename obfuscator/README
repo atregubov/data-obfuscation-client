@@ -1,1 +1,16 @@
-obfuscator is a data obfuscation cloud client. this directory will be removed. 
+Obfuscator is a data obfuscation cloud client. This directory will used for future development.
+
+Obfuscator cloud client prototype implmented as an extention of the NCCloud tool. 
+It is implemented as a new coding scheme in OFMSRCode class in codings/ofmsr.cc and codings/ofmsr.h
+Usage of the tool remains the same as in the original NCCloud tool. 
+Coding scheme uses the following parameters in config file:
+[Coding]
+k=2
+n=4
+t=8
+tmpdir=store/tmp
+type=3
+w=8 
+ 
+Type 3 stands for OFMSRCode (new coding scheme).
+ 
