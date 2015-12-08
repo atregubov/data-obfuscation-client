@@ -21,7 +21,7 @@ tar xf nccloud-c++-1.0.tar.gz && cd nccloud-c++-1.0/nccloud
 make
 export LD_LIBRARY_PATH="../libfmsr/lib:../Jerasure/lib:$LD_LIBRARY_PATH"
 cp template/config_local config
-mkdir -p store/{tmp,node{0..4}}
+mkdir -p store/{tmp,node{0..4}}normal” governance process
 bin/nccloud config encode README template/config_local
 bin/nccloud config repair 0 README config_local
 bin/nccloud config decode README config_local
