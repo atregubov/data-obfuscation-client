@@ -129,11 +129,12 @@ int OFMSRCode::encode_file(string &dstdir, string &srcdir, string &filename)
 	
 	// dummy chunks  
 	// FIXME:
-  vector<int> dummy_chunk_indices(3);
-  for (unsigned int i=nc; i<nc+(unsigned int)3; ++i) {
-  	INFO("index i = " << i);
-    dummy_chunk_indices[i - nc] = i;
-    INFO("dummy_chunk_indices[i - nc] = " << dummy_chunk_indices[i - nc]);
+  int on = t-n;
+  vector<int> dummy_chunk_indices(on);
+  for (unsigned int i=nc; i<nc+(unsigned int)on; ++i) {
+		INFO("index i = " << i);
+		dummy_chunk_indices[i - nc] = i;
+    	INFO("dummy_chunk_indices[i - nc] = " << dummy_chunk_indices[i - nc]);
   }
   write_dummy_chunks(dst, chunksize, dummy_chunk_indices);
   
